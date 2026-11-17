@@ -1,0 +1,168 @@
+{
+  "meta": {
+    "system": "Center of System - Smart System for Better Life",
+    "version": "2.8.0",
+    "lastUpdated": "2026-11-17T05:13:44.003Z"
+  },
+  "security": {
+    "algorithm": "SHA-256-SALTED",
+    "salt": "6d1d3e8d1ed22ad928f18b2a7737e278",
+    "hash": "861e9ea263e1eccdff665c3beb104b574237facef0cdd7d09fc7918a468cc961",
+    "isDefault": false,
+    "updatedAt": "17 Nov 2026"
+  },
+  "categories": {
+    "news": [
+      "Kerjasama Strategis",
+      "Seminar & Forum",
+      "Program Pelatihan"
+    ],
+    "article": [
+      "System Thinking",
+      "Rantai Nilai",
+      "Kebijakan & Lingkungan"
+    ],
+    "gallery": [
+      "Seminar & Forum",
+      "Riset Lapangan",
+      "Pelatihan Eksekutif",
+      "Pilot Proyek"
+    ]
+  },
+  "projects": [
+    {
+      "id": 1,
+      "badge": "ASEAN-JAIF PROJECT",
+      "period": "2018 - 2019",
+      "title": "Postharvest Loss Reduction of Agricultural Products",
+      "image": "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=600",
+      "description": "Proyek kolaborasi lintas negara ASEAN untuk efisiensi rantai pasok produk pertanian melalui rekayasa teknologi sistem cerdas."
+    },
+    {
+      "id": 2,
+      "badge": "ADB TECHNICAL ASSISTANT",
+      "period": "2020 - SEKARANG",
+      "title": "Value Chain Analysis for Horticulture Products",
+      "image": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600",
+      "description": "Analisis mendalam terhadap rantai nilai produk hortikultura di Indonesia untuk Asian Development Bank guna meningkatkan daya saing ekspor."
+    }
+  ],
+  "news": [
+    {
+      "id": 1,
+      "title": "Center of System Memperluas Kerjasama Strategis dengan Asian Development Bank",
+      "category": "Kerjasama Strategis",
+      "image": "images/001_berita1.png",
+      "date": "15 Okt 2026",
+      "author": "Redaksi CS",
+      "preview": "CS resmi memperpanjang kemitraan teknis untuk analisis rantai nilai pangan berkelanjutan di kawasan Asia Tenggara.",
+      "content": "Dalam pertemuan tahunan yang diadakan di Jakarta, Center of System (CS) secara resmi menandatangani kesepakatan perluasan kerjasama dengan Asian Development Bank (ADB).\n\nKerjasama ini difokuskan pada pengembangan metodologi analisis rantai nilai untuk produk-produk hortikultura unggulan di Indonesia guna meningkatkan ekspor nasional dan kesejahteraan petani melalui integrasi sistem informasi cerdas."
+    },
+    {
+      "id": 2,
+      "title": "Seminar Internasional: Masa Depan \"System Dynamics\" di Era AI",
+      "category": "Seminar & Forum",
+      "image": "images/002_berita2.jpg",
+      "date": "17 Nov 2026 (Diperbarui)",
+      "author": "Sekretariat CS",
+      "preview": "Direktur Utama CS, Prof. Dr. Kholil, menjadi pembicara kunci dalam forum sains sistem global mengenai integrasi AI dan pemodelan.",
+      "content": "Prof. Dr. Kholil, M.Kom, IPU menekankan pentingnya sinergi antara Artificial Intelligence (AI) dengan pemodelan System Dynamics untuk memprediksi perubahan iklim dan dampaknya terhadap ekonomi regional.\n\nForum ini dihadiri para pakar sistem dari berbagai negara dan memperkuat posisi Center of System sebagai lembaga rujukan sains sistem di tingkat regional."
+    },
+    {
+      "id": 3,
+      "title": "Peluncuran Program Executive System Thinking Batch Terbaru",
+      "category": "Program Pelatihan",
+      "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=600",
+      "date": "12 Nov 2026",
+      "author": "Divisi Pelatihan",
+      "preview": "CS kembali membuka program pengembangan kepemimpinan berbasis System Thinking untuk para pimpinan lembaga dan eksekutif.",
+      "content": "Menanggapi tingginya kebutuhan pengambilan keputusan berbasis sistem, CS resmi meluncurkan batch terbaru program \"Executive System Thinking for Leaders\".\n\nProgram ini dirancang khusus untuk membantu para eksekutif memahami kompleksitas organisasi sebagai sebuah ekosistem yang saling terhubung."
+    }
+  ],
+  "articles": [
+    {
+      "id": 1,
+      "title": "Memahami \"System Thinking\" dalam Solusi Sosial Kompleks",
+      "category": "System Thinking",
+      "image": "https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=600",
+      "date": "12 Okt 2026",
+      "author": "Prof. Dr. Kholil",
+      "preview": "Mengapa pendekatan konvensional sering gagal menghadapi masalah sosial yang saling terkait? Mari dalami pendekatan Soft Systems Methodology.",
+      "content": "Seringkali masalah dalam masyarakat tidak memiliki solusi linear. Pendekatan System Thinking yang dipelopori Peter Checkland menawarkan kerangka kerja bernama Soft Systems Methodology (SSM).\n\nSSM membantu kita memetakan hubungan antar aktor, struktur kelembagaan, dan nilai sosial sehingga kita dapat menemukan titik ungkit (leverage point) untuk perubahan yang berkelanjutan."
+    },
+    {
+      "id": 2,
+      "title": "Transformasi Digital Rantai Nilai Hortikultura di Indonesia",
+      "category": "Rantai Nilai",
+      "image": "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&q=80&w=600",
+      "date": "25 Okt 2026",
+      "author": "Sugiyono, STP, M.Sc",
+      "preview": "Analisis teknis mengenai efisiensi distribusi produk pertanian dari petani ke pasar global menggunakan pemodelan sistem dinamik.",
+      "content": "Indonesia memiliki potensi hortikultura yang luar biasa, namun tingkat kehilangan pascapanen (post-harvest loss) masih perlu ditekan.\n\nMelalui pemodelan sistem dinamik, CS mengidentifikasi bahwa integrasi informasi harga, logistik rantai dingin, dan kelembagaan petani dapat meningkatkan efisiensi distribusi hingga 20%."
+    },
+    {
+      "id": 3,
+      "title": "Sustainable Development: Ekosistem & Kebijakan Publik Terpadu",
+      "category": "Kebijakan & Lingkungan",
+      "image": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=600",
+      "date": "08 Nov 2026",
+      "author": "Ir. Liesa Larasati, M.M",
+      "preview": "Membangun ekosistem berkelanjutan memerlukan keterpaduan antara pendidikan, teknologi cerdas, dan regulasi yang adaptif.",
+      "content": "Keberlanjutan hanya dapat tercapai apabila pengelolaan lingkungan diperlakukan sebagai modal alam yang memiliki daya dukung dan batas regenerasi.\n\nCS melakukan riset kebijakan berbasis simulasi untuk memastikan setiap perencanaan pembangunan mempertimbangkan siklus hidup material dan energi secara sirkular."
+    }
+  ],
+  "gallery": [
+    {
+      "id": 1794891028469,
+      "title": "Test",
+      "category": "Pilot Proyek",
+      "image": "img/chris-montgomery-smgTvepind4-unsplash.jpg",
+      "desc": "test",
+      "date": "17 Nov 2026"
+    },
+    {
+      "id": 1,
+      "title": "Simposium Nasional Pemodelan Sistem Dinamik",
+      "category": "Seminar & Forum",
+      "image": "img/Supply-Chain-Optimization-in-Agriculture.jpeg",
+      "desc": "Diskusi panel para pakar kebijakan dan akademisi dalam merumuskan peta jalan Smart System Nasional.",
+      "date": "Oktober 2026"
+    },
+    {
+      "id": 2,
+      "title": "Survei Lapangan Rantai Nilai Hortikultura",
+      "category": "Riset Lapangan",
+      "image": "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=800",
+      "desc": "Tim ahli Center of System melakukan observasi sistem logistik pascapanen bersama mitra petani daerah.",
+      "date": "September 2026"
+    },
+    {
+      "id": 3,
+      "title": "Workshop Executive System Thinking",
+      "category": "Pelatihan Eksekutif",
+      "image": "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800",
+      "desc": "Sesi simulasi interaktif pengambilan keputusan strategis bagi pimpinan lembaga pemerintah dan swasta.",
+      "date": "November 2026"
+    }
+  ],
+  "inquiries": [
+    {
+      "id": 1,
+      "name": "Dr. Hendra Wijaya (Bappeda Provinsi)",
+      "email": "hendra.w@bappeda.go.id",
+      "date": "14 Nov 2026, 09:30",
+      "message": "Apakah Center of System menyediakan pendampingan penyusunan model System Dynamics untuk perencanaan ketahanan pangan daerah?",
+      "response": "Terima kasih Dr. Hendra. Ya, tim ahli kami menyediakan layanan pendampingan penuh mulai dari pemetaan Causal Loop Diagram (CLD), simulasi model kuantitatif, hingga pelatihan teknis bagi tim perencana daerah. Silakan hubungi sekretariat kami untuk penjadwalan audiensi.",
+      "respondedAt": "14 Nov 2026 • Admin CS"
+    },
+    {
+      "id": 2,
+      "name": "Rina Kusuma (Manajer Riset ESG)",
+      "email": "rina.kusuma@greenindustry.co.id",
+      "date": "16 Nov 2026, 14:15",
+      "message": "Kapan jadwal pendaftaran pelatihan Executive System Thinking batch berikutnya dibuka untuk peserta korporasi?",
+      "response": null,
+      "respondedAt": null
+    }
+  ]
+}

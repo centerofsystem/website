@@ -1,0 +1,2774 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Center of System | Smart System for Better Life</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        crimson: {
+                            800: '#800000',
+                            900: '#4a0404',
+                        },
+                        maroon: {
+                            500: '#b91c1c',
+                            600: '#991b1b',
+                            700: '#800000',
+                            800: '#5c0a0a',
+                            900: '#3b0404',
+                            950: '#1a0202',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Maroon Glassmorphism & Smart System Background Effects */
+        body {
+            background-color: #120305;
+            color: #fdf2f2;
+            overflow-x: hidden;
+        }
+
+        .ambient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 15% 20%, rgba(153, 27, 27, 0.55) 0%, transparent 50%),
+                radial-gradient(circle at 85% 25%, rgba(128, 0, 0, 0.45) 0%, transparent 50%),
+                radial-gradient(circle at 50% 85%, rgba(190, 18, 60, 0.30) 0%, transparent 55%),
+                #120305;
+            pointer-events: none;
+        }
+
+        .tech-grid {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            background-image: linear-gradient(to right, rgba(254, 202, 202, 0.04) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(254, 202, 202, 0.04) 1px, transparent 1px);
+            background-size: 48px 48px;
+            mask-image: radial-gradient(ellipse at center, black 45%, transparent 85%);
+            pointer-events: none;
+        }
+
+        .glass-panel {
+            background: rgba(45, 8, 12, 0.58);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border: 1px solid rgba(254, 202, 202, 0.14);
+            box-shadow: 0 8px 32px 0 rgba(10, 1, 2, 0.55);
+        }
+
+        .glass-card {
+            background: linear-gradient(145deg, rgba(128, 0, 0, 0.22) 0%, rgba(35, 6, 9, 0.45) 100%);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(252, 165, 165, 0.14);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(251, 113, 133, 0.55);
+            box-shadow: 0 20px 40px -15px rgba(153, 27, 27, 0.45);
+        }
+
+        .glass-input {
+            background: rgba(32, 5, 8, 0.72);
+            border: 1px solid rgba(252, 165, 165, 0.18);
+            color: #fff1f2;
+            transition: all 0.2s ease;
+        }
+
+        .glass-input:focus {
+            outline: none;
+            border-color: #fb7185;
+            box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.25);
+            background: rgba(48, 8, 12, 0.88);
+        }
+
+        .glow-btn-primary {
+            background: linear-gradient(135deg, #991b1b 0%, #800000 50%, #be123c 100%);
+            background-size: 200% auto;
+            border: 1px solid rgba(253, 164, 175, 0.25);
+            transition: 0.4s;
+        }
+
+        .glow-btn-primary:hover {
+            background-position: right center;
+            box-shadow: 0 0 24px rgba(225, 29, 72, 0.5);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #120305;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(185, 28, 28, 0.45);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(244, 63, 94, 0.7);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-rose-700 selection:text-white">
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-[200] flex flex-col gap-3 pointer-events-none"></div>
+
+    <!-- Navigation Bar -->
+    <nav class="fixed w-full z-50 glass-panel border-b border-rose-200/15">
+        <div class="container mx-auto px-4 sm:px-6 py-3 flex justify-between items-center">
+            <!-- Brand with Custom SVG Logo -->
+            <a href="#home" class="flex items-center space-x-3 group">
+                <div class="w-12 h-12 rounded-xl bg-white/95 border border-rose-300/40 flex items-center justify-center p-1.5 shadow-lg shadow-red-950/60 group-hover:scale-105 transition overflow-hidden">
+                    <svg viewBox="0 0 220 175" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" aria-label="Logo Center of System">
+                        <defs>
+                            <linearGradient id="csArcGradNav" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#e31b23"/>
+                                <stop offset="52%" stop-color="#e31b23"/>
+                                <stop offset="68%" stop-color="#ffffff"/>
+                                <stop offset="82%" stop-color="#e31b23"/>
+                                <stop offset="100%" stop-color="#d4141c"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- Outer Crescent Swooshes forming 'C' -->
+                        <path d="M 142 32 A 76 76 0 1 0 148 136 A 83 83 0 1 1 142 32 Z" fill="url(#csArcGradNav)"/>
+                        <path d="M 150 45 A 63 63 0 1 0 140 130 A 70 70 0 1 1 150 45 Z" fill="url(#csArcGradNav)"/>
+                        <path d="M 155 60 A 50 50 0 1 0 130 124 A 56 56 0 1 1 155 60 Z" fill="url(#csArcGradNav)"/>
+                        <!-- 'System' Text Inside Crescent -->
+                        <text x="95" y="102" fill="#e31b23" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="28" letter-spacing="2.5">System</text>
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-lg font-bold tracking-wider text-white block leading-none">CENTER OF SYSTEM</span>
+                    <span class="text-[10px] tracking-widest text-rose-300 uppercase font-medium mt-0.5 block">Smart System for Better Life</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden lg:flex items-center space-x-6 text-sm font-medium text-rose-100/80">
+                <a href="#home" class="hover:text-rose-300 transition">Beranda</a>
+                <a href="#about" class="hover:text-rose-300 transition">Tentang</a>
+                <a href="#services" class="hover:text-rose-300 transition">Layanan</a>
+                <a href="#projects" class="hover:text-rose-300 transition">Proyek</a>
+                <a href="#team" class="hover:text-rose-300 transition">Tim</a>
+                <a href="#news" class="hover:text-rose-300 transition flex items-center gap-1">
+                    Berita <span class="w-2 h-2 rounded-full bg-rose-400 animate-pulse"></span>
+                </a>
+                <a href="#articles" class="hover:text-rose-300 transition">Artikel</a>
+                <a href="#gallery" class="hover:text-rose-300 transition">Galeri</a>
+                <a href="#contact" class="hover:text-rose-300 transition">Kontak</a>
+            </div>
+
+            <!-- Role / Admin Trigger & Mobile Menu Button -->
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <button id="adminToggleBtn" onclick="handleAdminTrigger()" class="px-3 sm:px-3.5 py-2.5 sm:py-2 rounded-xl text-xs font-semibold flex items-center gap-2 transition border border-rose-300/20 bg-red-950/50 hover:bg-red-900/60 text-rose-100 touch-manipulation">
+                    <i id="adminBtnIcon" class="fas fa-shield-alt text-rose-400"></i>
+                    <span id="adminBtnText" class="hidden sm:inline">Portal Admin</span>
+                </button>
+                <button class="lg:hidden flex items-center gap-2 text-rose-100 px-3 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-rose-300/20 touch-manipulation transition" id="menuBtn" aria-label="Menu Navigasi">
+                    <i id="menuBtnIcon" class="fas fa-bars text-base text-rose-300"></i>
+                    <span class="text-xs font-semibold tracking-wide">Menu</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Admin Mode Status Banner (Visible only when Admin is logged in) -->
+        <div id="adminStatusBanner" class="hidden bg-gradient-to-r from-red-950/95 via-maroon-800/95 to-rose-950/95 border-t border-rose-400/30 px-4 py-2.5 text-xs">
+            <div class="container mx-auto flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2.5">
+                <div class="flex flex-wrap items-center gap-2 text-rose-200 font-medium">
+                    <span class="px-2 py-0.5 rounded bg-rose-500/25 border border-rose-400/40 text-rose-200 font-bold">MODE ADMIN AKTIF</span>
+                    <span id="dbSyncBadge" class="px-2 py-0.5 rounded bg-emerald-500/20 border border-emerald-400/40 text-emerald-200 text-[11px] font-semibold flex items-center gap-1">
+                        <i class="fas fa-database text-[10px]"></i> JSON Local DB
+                    </span>
+                </div>
+                <div class="flex flex-wrap items-center gap-3 sm:gap-4 self-end sm:self-auto">
+                    <button onclick="openJsonDbModal()" class="text-emerald-300 hover:text-white font-semibold underline flex items-center gap-1.5 py-1 touch-manipulation">
+                        <i class="fas fa-cloud-upload-alt"></i> JSON Database
+                    </button>
+                    <button onclick="openChangePasswordModal()" class="text-rose-200 hover:text-white font-semibold underline flex items-center gap-1.5 py-1 touch-manipulation">
+                        <i class="fas fa-key text-amber-300"></i> Ubah Sandi
+                    </button>
+                    <button onclick="logoutAdmin()" class="text-amber-300 hover:text-white font-semibold underline flex items-center gap-1.5 py-1 touch-manipulation">
+                        <i class="fas fa-sign-out-alt"></i> Keluar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden glass-panel border-t border-rose-200/15 px-4 sm:px-6 py-4 space-y-1.5 text-sm font-medium text-rose-100 max-h-[82vh] overflow-y-auto">
+            <a href="#home" class="flex items-center gap-3 py-2.5 px-3 rounded-xl hover:bg-white/10 hover:text-rose-300 transition">
+                <span class="w-7 h-7 rounded-lg bg-red-950/70 border border-rose-400/25 flex items-center justify-center text-rose-300 text-xs"><i class="fas fa-home"></i></span>
+                <span>Beranda</span>
+            </a>
+            <a href="#about" class="flex items-center gap-3 py-2.5 px-3 rounded-xl hover:bg-white/10 hover:text-rose-300 transition">
+                <span class="w-7 h-7 rounded-lg bg-red-950/70 border border-rose-400/25 flex items-center justify-center text-rose-300 text-xs"><i class="fas fa-building"></i></span>
+                <span>Tentang</span>
+            </a>
+            <a href="#services" class="flex items-center gap-3 py-2.5 px-3 rounded-xl hover:bg-white/10 hover:text-rose-300 transition">
+                <span class="w-7 h-7 rounded-lg bg-red-950/70 border border-rose-400/25 flex items-center justify-center text-rose-300 text-xs"><i class="fas fa-cogs"></i></span>
+                <span>Layanan</span>
+            </a>
+            <a href="#projects" class="flex items-center gap-3 py-2.5 px-3 rounded-xl hover:bg-white/10 hover:text-rose-300 transition">
+                <span class="w-7 h-7 rounded-lg bg-red-950/70 border border-rose-400/25 flex items-center justify-center text-rose-300 text-xs"><i class="fas fa-project-diagram"></i></span>
+                <span>Proyek</span>
+            </a>
+            <a href="#team" class="flex items-center gap-3 py-2.5 px-3 rounded-xl hover:bg-white/10 hover:text-rose-300 transition">
+                <span class="w-7 h-7 rounded-lg bg-red-950/70 border border-rose-400/25 flex items-center justify-center text-rose-300 text-xs"><i class="fas fa-users"></i></span>
+                <span>Tim</span>
+            </a>
+            <a href="#news" class="flex items-center gap-3 py-2.5 px-3 rounded-xl hover:bg-white/10 text-rose-300 font-semibold transition">
+                <span class="w-7 h-7 rounded-lg bg-rose-600/25 border border-rose-400/35 flex items-center justify-center text-rose-300 text-xs"><i class="fas fa-newspaper"></i></span>
+                <span class="flex-1">Berita Terbaru</span>
+                <span class="w-2 h-2 rounded-full bg-rose-400 animate-pulse"></span>
+            </a>
+            <a href="#articles" class="flex items-center gap-3 py-2.5 px-3 rounded-xl hover:bg-white/10 hover:text-rose-300 transition">
+                <span class="w-7 h-7 rounded-lg bg-red-950/70 border border-rose-400/25 flex items-center justify-center text-amber-300 text-xs"><i class="fas fa-book-open"></i></span>
+                <span>Artikel & Wawasan</span>
+            </a>
+            <a href="#gallery" class="flex items-center gap-3 py-2.5 px-3 rounded-xl hover:bg-white/10 hover:text-rose-300 transition">
+                <span class="w-7 h-7 rounded-lg bg-red-950/70 border border-rose-400/25 flex items-center justify-center text-rose-300 text-xs"><i class="fas fa-images"></i></span>
+                <span>Galeri Kegiatan</span>
+            </a>
+            <a href="#contact" class="flex items-center gap-3 py-2.5 px-3 rounded-xl hover:bg-white/10 hover:text-rose-300 transition">
+                <span class="w-7 h-7 rounded-lg bg-red-950/70 border border-rose-400/25 flex items-center justify-center text-emerald-300 text-xs"><i class="fas fa-envelope-open-text"></i></span>
+                <span>Kontak & Respon</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center pt-28 pb-16 overflow-hidden">
+        <div class="container mx-auto px-4 sm:px-6 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-10 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel border border-rose-400/35 text-rose-200 text-xs font-semibold tracking-wider uppercase">
+                        <span class="w-2 h-2 rounded-full bg-rose-400 animate-ping"></span>
+                        Established Since 2010 • Multidisciplinary System Science
+                    </div>
+                    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold leading-tight tracking-tight text-white">
+                        Smart System <br>
+                        <span class="bg-gradient-to-r from-rose-300 via-red-400 to-amber-200 bg-clip-text text-transparent">
+                            for Better Life
+                        </span>
+                    </h1>
+                    <p class="text-base sm:text-lg text-rose-100/80 max-w-2xl leading-relaxed">
+                        Sinergi kepakaran multidisiplin dalam sains sistem, pemodelan dinamik, dan rekayasa teknologi cerdas untuk meningkatkan kapasitas intelektual bangsa serta kesejahteraan masyarakat berkelanjutan.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="#about" class="glow-btn-primary text-white px-7 py-3.5 rounded-2xl font-semibold shadow-lg flex items-center gap-2">
+                            <span>Eksplorasi Sistem</span>
+                            <i class="fas fa-arrow-right text-sm"></i>
+                        </a>
+                        <a href="#contact" class="glass-panel hover:bg-red-900/40 text-white px-7 py-3.5 rounded-2xl font-semibold transition flex items-center gap-2">
+                            <i class="fas fa-comments text-rose-300"></i>
+                            <span>Konsultasi & Kontak</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Right Glass HUD Graphic -->
+                <div class="lg:col-span-5">
+                    <div class="glass-panel rounded-3xl p-6 sm:p-8 relative border border-rose-300/20">
+                        <div class="flex items-center justify-between border-b border-rose-200/15 pb-4 mb-6">
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-rose-500"></span>
+                                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                                <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                            </div>
+                            <span class="text-xs font-mono text-rose-300">SYS.ARCHITECTURE // v2.6</span>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="glass-card p-4 rounded-2xl flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-red-600/25 border border-rose-400/35 flex items-center justify-center text-rose-300 text-xl">
+                                    <i class="fas fa-project-diagram"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white text-sm">Holistic System Thinking</h3>
+                                    <p class="text-xs text-rose-200/70">Pemecahan masalah sosial & ekologi kompleks</p>
+                                </div>
+                            </div>
+                            <div class="glass-card p-4 rounded-2xl flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-rose-600/25 border border-rose-400/35 flex items-center justify-center text-rose-200 text-xl">
+                                    <i class="fas fa-microchip"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white text-sm">Smart Policy & Simulation</h3>
+                                    <p class="text-xs text-rose-200/70">Pemodelan berbasis data untuk keputusan strategis</p>
+                                </div>
+                            </div>
+                            <div class="glass-card p-4 rounded-2xl flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-xl bg-amber-600/20 border border-amber-400/30 flex items-center justify-center text-amber-300 text-xl">
+                                    <i class="fas fa-globe-asia"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white text-sm">Sustainable Ecosystem</h3>
+                                    <p class="text-xs text-rose-200/70">Kolaborasi lembaga nasional & internasional</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 relative">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="glass-panel rounded-3xl p-8 sm:p-12">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="relative">
+                        <div class="absolute -inset-2 bg-gradient-to-r from-red-800 to-rose-600 rounded-2xl blur opacity-40"></div>
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=900" 
+                             onerror="this.src='https://placehold.co/800x550/3b0404/fda4af?text=Center+of+System+Collaboration'"
+                             alt="Kolaborasi Tim Center of System" 
+                             class="relative rounded-2xl w-full h-80 sm:h-96 object-cover border border-rose-200/20 shadow-2xl">
+                    </div>
+                    <div class="space-y-6">
+                        <span class="text-rose-300 text-xs font-bold tracking-widest uppercase">Profil Lembaga</span>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-white">Tentang Center of System</h2>
+                        <p class="text-rose-100/80 leading-relaxed text-sm sm:text-base">
+                            Center of System (CS) adalah forum penyatuan ide intelektual, kreativitas, dan inovasi di bidang teknik sistem serta aplikasi perangkat lunak cerdas. Sebagai organisasi berbasis sains, kami merancang instrumen strategis untuk pembangunan berkelanjutan, pelestarian ekosistem, pendidikan, dan transformasi teknologi.
+                        </p>
+                        <div class="grid sm:grid-cols-2 gap-4 pt-2">
+                            <div class="glass-card p-5 rounded-2xl border-l-4 border-l-rose-500">
+                                <h3 class="font-bold text-lg text-white mb-1">Konsultan Strategis</h3>
+                                <p class="text-xs text-rose-200/70">Reputasi internasional dalam pendampingan kebijakan publik dan korporasi.</p>
+                            </div>
+                            <div class="glass-card p-5 rounded-2xl border-l-4 border-l-amber-400">
+                                <h3 class="font-bold text-lg text-white mb-1">Metodologi Sains</h3>
+                                <p class="text-xs text-rose-200/70">Pendekatan System Dynamics & Soft System Methodology yang teruji.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-rose-300 text-xs font-bold tracking-widest uppercase">Kompetensi Inti</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2 mb-4">Layanan Utama Kami</h2>
+                <p class="text-rose-100/70 text-sm sm:text-base">Solusi komprehensif berbasis pemikiran sistem untuk menjawab tantangan kompleksitas di era modern.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-card p-8 rounded-3xl relative overflow-hidden group">
+                    <div class="w-14 h-14 rounded-2xl bg-red-600/25 border border-rose-400/35 text-rose-300 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">System Thinking</h3>
+                    <p class="text-rose-100/70 text-sm leading-relaxed">Analisis masalah dunia nyata yang kompleks melalui pendekatan sistem yang terintegrasi, koheren, dan berorientasi solusi jangka panjang.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-3xl relative overflow-hidden group">
+                    <div class="w-14 h-14 rounded-2xl bg-rose-600/25 border border-rose-400/35 text-rose-200 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Policy Research</h3>
+                    <p class="text-rose-100/70 text-sm leading-relaxed">Penelitian kebijakan strategis berbasis simulasi model untuk pembangunan berkelanjutan dan penguatan ketahanan ekosistem nasional.</p>
+                </div>
+
+                <div class="glass-card p-8 rounded-3xl relative overflow-hidden group">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-600/20 border border-amber-400/30 text-amber-300 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition">
+                        <i class="fas fa-users-cog"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Executive Development</h3>
+                    <p class="text-rose-100/70 text-sm leading-relaxed">Program pelatihan eksekutif berbasis sistem untuk meningkatkan kapabilitas pengambilan keputusan dan kepemimpinan adaptif.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-14 gap-4">
+                <div>
+                    <span class="text-rose-300 text-xs font-bold tracking-widest uppercase">Portofolio Global</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">Rekam Jejak & Proyek Strategis</h2>
+                    <p class="text-rose-100/70 text-sm mt-2 max-w-xl">Kolaborasi strategis tingkat nasional dan internasional dalam penerapan sains sistem.</p>
+                </div>
+                <!-- Admin Add Project Button -->
+                <button onclick="openProjectEditor()" class="admin-only hidden glow-btn-primary text-white px-5 py-3 rounded-2xl text-sm font-semibold shadow-lg flex items-center gap-2">
+                    <i class="fas fa-folder-plus"></i>
+                    <span>Tambah Proyek Strategis</span>
+                </button>
+            </div>
+
+            <div class="space-y-8" id="projectsList">
+                <!-- Rendered dynamically via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-20">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-2xl mx-auto mb-14">
+                <span class="text-rose-300 text-xs font-bold tracking-widest uppercase">Struktur Kepakaran</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2 mb-4">Tim Ahli Kami</h2>
+                <p class="text-rose-100/70 text-sm sm:text-base">Dipimpin oleh para akademisi dan praktisi senior dengan reputasi luas dalam sains sistem.</p>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Member 1 -->
+                <div class="glass-card rounded-3xl overflow-hidden group">
+                    <div class="relative h-64 overflow-hidden bg-maroon-950">
+                        <img src="img/rev_kholil.png" 
+                             onerror="this.src='https://placehold.co/600x600/3b0404/fda4af?text=Prof.+Dr.+Kholil'"
+                             alt="Prof. Dr. Kholil" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-maroon-950 via-transparent to-transparent"></div>
+                    </div>
+                    <div class="p-6 text-center -mt-6 relative z-10">
+                        <h3 class="font-bold text-base text-white">Prof. Dr. Kholil, M.Kom, IPU</h3>
+                        <p class="text-xs text-rose-300 font-semibold mt-1 mb-2">Direktur Utama</p>
+                        <p class="text-xs text-rose-200/70">Ahli Sistem Dinamik & Manajemen Lingkungan</p>
+                    </div>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="glass-card rounded-3xl overflow-hidden group">
+                    <div class="relative h-64 overflow-hidden bg-maroon-950">
+                        <img src="img/rev_Liesa_1.png" 
+                             onerror="this.src='https://placehold.co/600x600/3b0404/fda4af?text=Ir.+Liesa+Larasati'"
+                             alt="Ir. Liesa Larasati" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-maroon-950 via-transparent to-transparent"></div>
+                    </div>
+                    <div class="p-6 text-center -mt-6 relative z-10">
+                        <h3 class="font-bold text-base text-white">Ir. Liesa Larasati, M.M</h3>
+                        <p class="text-xs text-rose-300 font-semibold mt-1 mb-2">Direktur SDM & Kerjasama</p>
+                        <p class="text-xs text-rose-200/70">Analisis Kebijakan & Pembangunan Berkelanjutan</p>
+                    </div>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="glass-card rounded-3xl overflow-hidden group">
+                    <div class="relative h-64 overflow-hidden bg-maroon-950">
+                        <img src="img/rev_arfian.png" 
+                             onerror="this.src='https://placehold.co/600x600/3b0404/fda4af?text=Ir.+Arfian+Muslim'"
+                             alt="Ir. Arfian Muslim" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-maroon-950 via-transparent to-transparent"></div>
+                    </div>
+                    <div class="p-6 text-center -mt-6 relative z-10">
+                        <h3 class="font-bold text-base text-white">Ir. Arfian Muslim, MP</h3>
+                        <p class="text-xs text-rose-300 font-semibold mt-1 mb-2">Direktur Pengembangan & Pemberdayaan</p>
+                        <p class="text-xs text-rose-200/70">Ahli Keuangan dan Kelembagaan</p>
+                    </div>
+                </div>
+
+                <!-- Member 4 -->
+                <div class="glass-card rounded-3xl overflow-hidden group">
+                    <div class="relative h-64 overflow-hidden bg-maroon-950">
+                        <img src="img/rev_sugie.jpeg" 
+                             onerror="this.src='https://placehold.co/600x600/3b0404/fda4af?text=Sugiyono,+M.Sc'"
+                             alt="Sugiyono" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-maroon-950 via-transparent to-transparent"></div>
+                    </div>
+                    <div class="p-6 text-center -mt-6 relative z-10">
+                        <h3 class="font-bold text-base text-white">Sugiyono, STP, M.Sc</h3>
+                        <p class="text-xs text-rose-300 font-semibold mt-1 mb-2">Expert Coordinator</p>
+                        <p class="text-xs text-rose-200/70">Ahli Sistem Analis, Metodologi Riset & Pemodelan</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- FITUR 2: BERITA TERBARU (ADMIN UPDATE PERIODIK & GUEST READABLE)     -->
+    <!-- ===================================================================== -->
+    <section id="news" class="py-20 relative">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+                <div>
+                    <span class="text-rose-300 text-xs font-bold tracking-widest uppercase">Rilis Berkala</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">Berita & Agenda Terbaru</h2>
+                    <p class="text-rose-100/70 text-sm mt-2 max-w-xl">Informasi terkini mengenai aktivitas, kerjasama strategis, dan pencapaian Center of System.</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-2.5">
+                    <!-- Admin Manage News Categories Button -->
+                    <button onclick="openCategoryManager('news')" class="admin-only hidden glass-panel hover:bg-white/10 text-rose-200 border border-rose-400/35 px-4 py-3 rounded-2xl text-xs sm:text-sm font-semibold shadow-lg flex items-center gap-2">
+                        <i class="fas fa-tags text-amber-300"></i>
+                        <span>Kelola Kategori</span>
+                    </button>
+                    <!-- Admin Add News Button -->
+                    <button onclick="openEditorModal('news')" class="admin-only hidden glow-btn-primary text-white px-5 py-3 rounded-2xl text-xs sm:text-sm font-semibold shadow-lg flex items-center gap-2">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Tambah Berita Baru</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- News Category Filter Pills -->
+            <div class="flex flex-wrap gap-2 mb-8" id="newsFilters">
+                <!-- Rendered dynamically via JS -->
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="newsGrid">
+                <!-- Rendered dynamically via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- FITUR 3: ARTIKEL & WAWASAN (ADMIN UPDATE PERIODIK & GUEST READABLE)   -->
+    <!-- ===================================================================== -->
+    <section id="articles" class="py-20 relative">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+                <div>
+                    <span class="text-amber-300 text-xs font-bold tracking-widest uppercase">Publikasi Ilmiah & Opini</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">Artikel & Wawasan Sistem</h2>
+                    <p class="text-rose-100/70 text-sm mt-2 max-w-xl">Kajian mendalam mengenai metodologi sistem, pemodelan dinamik, dan hasil riset kebijakan.</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-2.5">
+                    <!-- Admin Manage Article Categories Button -->
+                    <button onclick="openCategoryManager('article')" class="admin-only hidden glass-panel hover:bg-white/10 text-rose-200 border border-rose-400/35 px-4 py-3 rounded-2xl text-xs sm:text-sm font-semibold shadow-lg flex items-center gap-2">
+                        <i class="fas fa-tags text-amber-300"></i>
+                        <span>Kelola Kategori</span>
+                    </button>
+                    <!-- Admin Add Article Button -->
+                    <button onclick="openEditorModal('article')" class="admin-only hidden glow-btn-primary text-white px-5 py-3 rounded-2xl text-xs sm:text-sm font-semibold shadow-lg flex items-center gap-2">
+                        <i class="fas fa-pen-nib"></i>
+                        <span>Tulis Artikel Baru</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Category Filter Pills -->
+            <div class="flex flex-wrap gap-2 mb-8" id="articleFilters">
+                <!-- Rendered dynamically via JS -->
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="articlesGrid">
+                <!-- Rendered dynamically via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- FITUR 5: GALERI FOTO KEGIATAN                                         -->
+    <!-- ===================================================================== -->
+    <section id="gallery" class="py-20 relative">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 gap-4">
+                <div>
+                    <span class="text-rose-300 text-xs font-bold tracking-widest uppercase">Dokumentasi Visual</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-white mt-2">Galeri Kegiatan</h2>
+                    <p class="text-rose-100/70 text-sm mt-2 max-w-xl">Dokumentasi seminar internasional, workshop pemodelan sistem, dan pendampingan lapangan.</p>
+                </div>
+                <div class="flex flex-wrap items-center gap-2.5">
+                    <!-- Admin Manage Gallery Categories Button -->
+                    <button onclick="openCategoryManager('gallery')" class="admin-only hidden glass-panel hover:bg-white/10 text-rose-200 border border-rose-400/35 px-4 py-3 rounded-2xl text-xs sm:text-sm font-semibold shadow-lg flex items-center gap-2">
+                        <i class="fas fa-tags text-amber-300"></i>
+                        <span>Kelola Kategori</span>
+                    </button>
+                    <!-- Admin Add Gallery Button -->
+                    <button onclick="openGalleryEditor()" class="admin-only hidden glow-btn-primary text-white px-5 py-3 rounded-2xl text-xs sm:text-sm font-semibold shadow-lg flex items-center gap-2">
+                        <i class="fas fa-camera"></i>
+                        <span>Tambah Foto Kegiatan</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Gallery Category Filter -->
+            <div class="flex flex-wrap gap-2 mb-8" id="galleryFilters">
+                <!-- Rendered dynamically via JS -->
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
+                <!-- Rendered dynamically via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ===================================================================== -->
+    <!-- FITUR 4: KONTAK INTERAKTIF (ADMIN RESPON & GUEST DAPAT MELIHAT RESPON) -->
+    <!-- ===================================================================== -->
+    <section id="contact" class="py-20 relative">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="glass-panel rounded-3xl p-6 sm:p-12 border border-rose-200/15">
+                <div class="grid lg:grid-cols-12 gap-10">
+                    
+                    <!-- Left Column: Info & Contact Form -->
+                    <div class="lg:col-span-5 space-y-8">
+                        <div>
+                            <span class="text-rose-300 text-xs font-bold tracking-widest uppercase">Komunikasi Terbuka</span>
+                            <h2 class="text-3xl font-bold text-white mt-2 mb-3">Hubungi & Diskusi</h2>
+                            <p class="text-rose-100/75 text-sm leading-relaxed">
+                                Kirimkan pertanyaan, permohonan konsultasi, atau gagasan kolaborasi riset. Tim admin kami akan merespon secara terbuka pada panel forum di samping.
+                            </p>
+                        </div>
+
+                        <!-- Contact Form -->
+                        <form id="contactForm" onsubmit="handleContactSubmit(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">Nama Lengkap / Instansi</label>
+                                <input type="text" id="contactName" class="w-full px-4 py-3 rounded-xl glass-input text-sm" placeholder="Contoh: Dr. Namanya Siapa (Kementerian...)" required>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">Alamat Email</label>
+                                <input type="email" id="contactEmail" class="w-full px-4 py-3 rounded-xl glass-input text-sm" placeholder="nama@instansi.go.id" required>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">Pesan atau Topik Konsultasi</label>
+                                <textarea id="contactMessage" rows="4" class="w-full px-4 py-3 rounded-xl glass-input text-sm" placeholder="Tuliskan pertanyaan atau kebutuhan pendampingan sistem Anda..." required></textarea>
+                            </div>
+                            <button type="submit" class="w-full glow-btn-primary text-white py-3.5 rounded-xl font-bold text-sm shadow-lg flex items-center justify-center gap-2">
+                                <i class="fas fa-paper-plane"></i>
+                                <span>Kirim Pesan Sekarang</span>
+                            </button>
+                        </form>
+
+                        <!-- Office Info -->
+                        <div class="pt-4 border-t border-rose-200/15 space-y-3 text-xs text-rose-100/80">
+                            <div class="flex items-start gap-3">
+                                <i class="fas fa-map-marker-alt text-rose-300 mt-0.5"></i>
+                                <span>South Quarter Building Tower C, Level 10, Jl. R.A. Kartini Kav.8, Jakarta 12430</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-phone text-rose-300"></i>
+                                <span>+62-21-5098 2390 • +62-812-890 4403</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <i class="fas fa-envelope text-rose-300"></i>
+                                <span>admin.centerofsystem@gmail.com</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Public Inquiries & Admin Responses -->
+                    <div class="lg:col-span-7 flex flex-col">
+                        <div class="flex flex-wrap justify-between items-center gap-2 mb-6 pb-4 border-b border-rose-200/15">
+                            <div>
+                                <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                                    <i class="fas fa-comments text-rose-300"></i>
+                                    <span>Forum Tanya Jawab & Respon Resmi</span>
+                                </h3>
+                                <p class="text-xs text-rose-200/70 mt-1">Tamu dapat memantau status pesan dan membaca balasan resmi dari Admin CS secara langsung.</p>
+                            </div>
+                            <span id="inquiryCountBadge" class="px-3 py-1 rounded-full text-xs font-semibold bg-red-900/60 border border-rose-400/30 text-rose-200">
+                                0 Pesan
+                            </span>
+                        </div>
+
+                        <div id="inquiriesList" class="space-y-4 max-h-[560px] overflow-y-auto pr-1 sm:pr-2">
+                            <!-- Rendered dynamically via JS -->
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="glass-panel border-t border-rose-200/15 py-12 mt-10">
+        <div class="container mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 pb-8 border-b border-rose-200/15">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 rounded-xl bg-white/95 border border-rose-300/40 flex items-center justify-center p-1.5 shadow-md overflow-hidden">
+                        <svg viewBox="0 0 220 175" class="w-full h-full" xmlns="http://www.w3.org/2000/svg" aria-label="Logo Center of System Footer">
+                            <defs>
+                                <linearGradient id="csArcGradFooter" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="#e31b23"/>
+                                    <stop offset="52%" stop-color="#e31b23"/>
+                                    <stop offset="68%" stop-color="#ffffff"/>
+                                    <stop offset="82%" stop-color="#e31b23"/>
+                                    <stop offset="100%" stop-color="#d4141c"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M 142 32 A 76 76 0 1 0 148 136 A 83 83 0 1 1 142 32 Z" fill="url(#csArcGradFooter)"/>
+                            <path d="M 150 45 A 63 63 0 1 0 140 130 A 70 70 0 1 1 150 45 Z" fill="url(#csArcGradFooter)"/>
+                            <path d="M 155 60 A 50 50 0 1 0 130 124 A 56 56 0 1 1 155 60 Z" fill="url(#csArcGradFooter)"/>
+                            <text x="95" y="102" fill="#e31b23" font-family="Inter, Arial, sans-serif" font-weight="700" font-size="28" letter-spacing="2.5">System</text>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="text-lg font-bold tracking-wider text-white block">CENTER OF SYSTEM</span>
+                        <span class="text-xs text-rose-300">Smart System for Better Life</span>
+                    </div>
+                </div>
+                <div class="flex flex-wrap justify-center gap-6 text-xs sm:text-sm text-rose-100/75">
+                    <a href="#about" class="hover:text-white transition">Tentang</a>
+                    <a href="#services" class="hover:text-white transition">Layanan</a>
+                    <a href="#projects" class="hover:text-white transition">Proyek</a>
+                    <a href="#news" class="hover:text-white transition">Berita</a>
+                    <a href="#articles" class="hover:text-white transition">Artikel</a>
+                    <a href="#gallery" class="hover:text-white transition">Galeri</a>
+                    <a href="#contact" class="hover:text-white transition">Kontak</a>
+                </div>
+            </div>
+            <div class="pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-rose-200/60 gap-4">
+                <p>&copy; 2026 Center of System. Smart System for Better Life. Seluruh Hak Cipta Dilindungi.</p>
+                <div class="flex space-x-4 text-base text-rose-200/80">
+                    <a href="#contact" class="hover:text-rose-300 transition"><i class="fab fa-linkedin"></i></a>
+                    <a href="#contact" class="hover:text-rose-300 transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#contact" class="hover:text-rose-300 transition"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===================================================================== -->
+    <!-- MODALS (READER, ADMIN LOGIN, CHANGE PASSWORD, EDITORS & LIGHTBOX)     -->
+    <!-- ===================================================================== -->
+
+    <!-- 1. Reader Modal for News & Articles (Guest & Admin) -->
+    <div id="readerModal" class="hidden fixed inset-0 bg-maroon-950/85 z-[110] flex items-center justify-center p-4 backdrop-blur-md">
+        <div class="glass-panel rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto border border-rose-300/25 shadow-2xl">
+            <div class="sticky top-0 bg-maroon-950/90 backdrop-blur-md border-b border-rose-200/15 px-6 py-4 flex justify-between items-center z-10">
+                <span id="readerBadge" class="px-3 py-1 rounded-full text-xs font-bold bg-red-800/70 text-rose-200 border border-rose-400/35 uppercase">Berita</span>
+                <button onclick="closeReaderModal()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-rose-600 text-white flex items-center justify-center transition text-lg">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-6 sm:p-8 space-y-6">
+                <img id="readerImage" src="" alt="" class="w-full h-64 sm:h-80 object-cover rounded-2xl border border-rose-200/20 shadow-lg">
+                <div>
+                    <h2 id="readerTitle" class="text-2xl sm:text-3xl font-bold text-white leading-snug mb-3"></h2>
+                    <div class="flex flex-wrap items-center gap-4 text-xs text-rose-200/75 bg-red-950/50 px-4 py-2.5 rounded-xl border border-rose-200/15">
+                        <span><i class="far fa-calendar-alt text-rose-300 mr-1.5"></i><span id="readerDate"></span></span>
+                        <span>•</span>
+                        <span><i class="far fa-user text-rose-300 mr-1.5"></i><span id="readerAuthor"></span></span>
+                        <span id="readerCategoryWrap" class="hidden">• <span id="readerCategory" class="text-amber-300 font-semibold"></span></span>
+                    </div>
+                </div>
+                <div id="readerContent" class="text-rose-100/90 text-sm sm:text-base leading-relaxed space-y-4 whitespace-pre-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Admin Authentication Login Modal -->
+    <div id="adminLoginModal" class="hidden fixed inset-0 bg-maroon-950/85 z-[120] flex items-center justify-center p-4 backdrop-blur-md">
+        <div class="glass-panel rounded-3xl max-w-md w-full p-6 sm:p-8 border border-rose-400/35 shadow-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-red-600/25 border border-rose-400/35 flex items-center justify-center text-rose-300">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Portal Administrator</h3>
+                        <p class="text-xs text-rose-200/70">Autentikasi Terenkripsi SHA-256</p>
+                    </div>
+                </div>
+                <button onclick="closeAdminLoginModal()" class="w-9 h-9 rounded-full hover:bg-white/10 text-rose-200/70 hover:text-white flex items-center justify-center text-xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form onsubmit="submitAdminLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">Kata Sandi Admin</label>
+                    <div class="relative">
+                        <input type="password" id="adminPasswordInput" class="w-full px-4 py-3 pr-11 rounded-xl glass-input text-sm" placeholder="Masukkan kata sandi admin..." required>
+                        <button type="button" onclick="togglePasswordVisibility('adminPasswordInput', 'loginEyeIcon')" class="absolute right-3 top-1/2 -translate-y-1/2 text-rose-300/80 hover:text-white p-1.5" aria-label="Tampilkan sandi">
+                            <i id="loginEyeIcon" class="fas fa-eye text-sm"></i>
+                        </button>
+                    </div>
+                    <p id="defaultHintText" class="text-[11px] text-rose-300 mt-2">
+                        <i class="fas fa-info-circle mr-1"></i>Sandi bawaan awal: <code class="bg-white/10 px-1.5 py-0.5 rounded font-mono text-white">admin123</code>
+                    </p>
+                </div>
+                <button type="submit" class="w-full glow-btn-primary text-white py-3.5 rounded-xl font-bold text-sm shadow-lg touch-manipulation">
+                    Masuk ke Mode Admin
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2B. Change Admin Password Modal (Encrypted SHA-256 + Salted Hash) -->
+    <div id="changePasswordModal" class="hidden fixed inset-0 bg-maroon-950/85 z-[125] flex items-center justify-center p-4 backdrop-blur-md">
+        <div class="glass-panel rounded-3xl max-w-md w-full p-6 sm:p-8 border border-rose-400/35 shadow-2xl">
+            <div class="flex justify-between items-center mb-5 pb-3 border-b border-rose-200/15">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-300">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Perbarui Sandi Admin</h3>
+                        <p class="text-[11px] text-rose-200/70">Enkripsi Kriptografi SHA-256 + Random Salt</p>
+                    </div>
+                </div>
+                <button onclick="closeChangePasswordModal()" class="w-9 h-9 rounded-full hover:bg-white/10 text-rose-200/70 hover:text-white flex items-center justify-center text-xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form onsubmit="submitChangePassword(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">Kata Sandi Saat Ini</label>
+                    <input type="password" id="currentAdminPwd" class="w-full px-4 py-3 rounded-xl glass-input text-sm" placeholder="Masukkan sandi lama..." required>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">Kata Sandi Baru (Min. 6 karakter)</label>
+                    <div class="relative">
+                        <input type="password" id="newAdminPwd" minlength="6" class="w-full px-4 py-3 pr-11 rounded-xl glass-input text-sm" placeholder="Masukkan sandi baru..." required>
+                        <button type="button" onclick="togglePasswordVisibility('newAdminPwd', 'newPwdEyeIcon')" class="absolute right-3 top-1/2 -translate-y-1/2 text-rose-300/80 hover:text-white p-1.5">
+                            <i id="newPwdEyeIcon" class="fas fa-eye text-sm"></i>
+                        </button>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">Konfirmasi Kata Sandi Baru</label>
+                    <input type="password" id="confirmAdminPwd" minlength="6" class="w-full px-4 py-3 rounded-xl glass-input text-sm" placeholder="Ulangi sandi baru..." required>
+                </div>
+                <div class="p-3 rounded-xl bg-emerald-950/50 border border-emerald-400/25 text-[11px] text-emerald-200/90 flex items-start gap-2.5">
+                    <i class="fas fa-lock text-emerald-400 mt-0.5"></i>
+                    <span>Kata sandi tidak pernah disimpan dalam teks biasa; sistem menghasilkan hash <strong>SHA-256</strong> unik dengan <em>cryptographic salt</em> acak.</span>
+                </div>
+                <div class="flex justify-end gap-3 pt-2">
+                    <button type="button" onclick="closeChangePasswordModal()" class="px-4 py-2.5 rounded-xl glass-panel text-xs font-semibold text-rose-100 hover:bg-white/10">Batal</button>
+                    <button type="submit" class="glow-btn-primary text-white px-5 py-2.5 rounded-xl text-xs font-bold shadow-lg">Simpan & Enkripsi</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 3. Admin Content Editor Modal (For News & Articles) -->
+    <div id="editorModal" class="hidden fixed inset-0 bg-maroon-950/85 z-[120] flex items-center justify-center p-4 backdrop-blur-md">
+        <div class="glass-panel rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 border border-rose-400/35 shadow-2xl">
+            <div class="flex justify-between items-center mb-6 pb-4 border-b border-rose-200/15">
+                <h3 id="editorModalTitle" class="text-xl font-bold text-white">Tambah Konten Baru</h3>
+                <button onclick="closeEditorModal()" class="text-rose-200/70 hover:text-white text-xl"><i class="fas fa-times"></i></button>
+            </div>
+            <form onsubmit="saveEditorContent(event)" class="space-y-4">
+                <input type="hidden" id="editType">
+                <input type="hidden" id="editId">
+
+                <div>
+                    <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">Judul Publikasi</label>
+                    <input type="text" id="editTitle" class="w-full px-4 py-2.5 rounded-xl glass-input text-sm" required>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">Penulis / Sumber</label>
+                        <input type="text" id="editAuthor" class="w-full px-4 py-2.5 rounded-xl glass-input text-sm" value="Tim Redaksi CS" required>
+                    </div>
+                    <div id="editCategoryContainer">
+                        <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">Kategori Publikasi</label>
+                        <select id="editCategory" class="w-full px-4 py-2.5 rounded-xl glass-input text-sm">
+                            <!-- Populated dynamically via JS -->
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-xs font-semibold text-rose-100/90">Sumber Gambar Sampul (<code class="text-rose-300">images/</code> atau URL)</label>
+                        <label id="editFolderPickerWrap" class="text-[11px] font-semibold text-amber-300 hover:text-amber-200 cursor-pointer flex items-center gap-1">
+                            <i class="fas fa-folder-open"></i> Pilih File di Folder images/
+                            <input type="file" id="editFilePicker" accept="image/*" onchange="handleEditorFolderFilePick(event)" class="hidden">
+                        </label>
+                    </div>
+                    <input type="text" id="editImage" oninput="updateEditorImagePreview(this.value)" class="w-full px-4 py-2.5 rounded-xl glass-input text-sm font-mono" placeholder="images/berita_01.jpg atau https://images.unsplash.com/..." required>
+                    
+                    <!-- Quick Preset Buttons for Folder images/ (Shown for News) -->
+                    <div id="editImagesPresets" class="mt-2 flex flex-wrap items-center gap-1.5">
+                        <span class="text-[11px] text-rose-200/70 mr-1">Contoh jalur <code class="text-rose-300">images/</code>:</span>
+                        <button type="button" onclick="selectEditorPresetImg('images/berita_01.jpg')" class="px-2 py-1 rounded-lg bg-white/10 hover:bg-rose-600/40 border border-rose-300/20 text-[11px] text-rose-100 font-mono transition">images/berita_01.jpg</button>
+                        <button type="button" onclick="selectEditorPresetImg('images/seminar_cs.jpg')" class="px-2 py-1 rounded-lg bg-white/10 hover:bg-rose-600/40 border border-rose-300/20 text-[11px] text-rose-100 font-mono transition">images/seminar_cs.jpg</button>
+                        <button type="button" onclick="selectEditorPresetImg('images/kerjasama_adb.jpg')" class="px-2 py-1 rounded-lg bg-white/10 hover:bg-rose-600/40 border border-rose-300/20 text-[11px] text-rose-100 font-mono transition">images/kerjasama_adb.jpg</button>
+                    </div>
+
+                    <!-- Live Cover Preview -->
+                    <div class="mt-3 relative h-36 rounded-2xl overflow-hidden border border-rose-300/20 bg-maroon-950/80">
+                        <img id="editImagePreview" src="" alt="Pratinjau Sampul" onerror="this.src='https://placehold.co/600x300/3b0404/fda4af?text=Pratinjau+Gambar+Sampul'" class="w-full h-full object-cover">
+                        <span id="editPathBadge" class="absolute bottom-2 left-2 px-2.5 py-1 rounded-lg bg-maroon-950/85 border border-rose-300/25 text-[10px] font-mono text-rose-200">images/</span>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">Ringkasan Singkat (Preview)</label>
+                    <textarea id="editPreview" rows="2" class="w-full px-4 py-2.5 rounded-xl glass-input text-sm" required></textarea>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">Isi Lengkap Berita / Artikel</label>
+                    <textarea id="editContent" rows="5" class="w-full px-4 py-2.5 rounded-xl glass-input text-sm" required></textarea>
+                </div>
+
+                <div class="flex justify-end gap-3 pt-2">
+                    <button type="button" onclick="closeEditorModal()" class="px-5 py-2.5 rounded-xl glass-panel text-sm font-semibold text-rose-100 hover:bg-white/10">Batal</button>
+                    <button type="submit" class="glow-btn-primary text-white px-6 py-2.5 rounded-xl text-sm font-bold shadow-lg">Simpan & Publikasikan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 4. Gallery Lightbox & Admin Gallery Add Modal -->
+    <div id="galleryLightbox" class="hidden fixed inset-0 bg-maroon-950/90 z-[120] flex items-center justify-center p-4 backdrop-blur-md">
+        <div class="glass-panel rounded-3xl max-w-4xl w-full overflow-hidden border border-rose-300/25 shadow-2xl">
+            <div class="relative">
+                <img id="lightboxImg" src="" alt="" class="w-full max-h-[70vh] object-cover">
+                <button onclick="closeGalleryLightbox()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-maroon-950/80 hover:bg-rose-600 text-white flex items-center justify-center transition">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <span id="lightboxCat" class="text-xs font-bold text-rose-300 uppercase tracking-wider"></span>
+                    <h3 id="lightboxTitle" class="text-xl font-bold text-white mt-1"></h3>
+                    <p id="lightboxDesc" class="text-sm text-rose-100/75 mt-1"></p>
+                </div>
+                <span id="lightboxDate" class="text-xs text-rose-200/70 whitespace-nowrap bg-red-950/60 px-3 py-1.5 rounded-lg border border-rose-200/15"></span>
+            </div>
+        </div>
+    </div>
+
+    <div id="galleryEditorModal" class="hidden fixed inset-0 bg-maroon-950/85 z-[120] flex items-center justify-center p-4 backdrop-blur-md">
+        <div class="glass-panel rounded-3xl max-w-lg w-full p-6 sm:p-8 border border-rose-400/35 shadow-2xl">
+            <div class="flex justify-between items-center mb-6 pb-3 border-b border-rose-200/15">
+                <h3 id="galleryEditorTitle" class="text-lg font-bold text-white">Tambah Foto Kegiatan</h3>
+                <button onclick="closeGalleryEditor()" class="text-rose-200/70 hover:text-white text-xl"><i class="fas fa-times"></i></button>
+            </div>
+            <form onsubmit="saveGalleryItem(event)" class="space-y-4">
+                <input type="hidden" id="editGalId">
+                <div>
+                    <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">Judul Kegiatan</label>
+                    <input type="text" id="galTitle" class="w-full px-4 py-2.5 rounded-xl glass-input text-sm" required>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">Kategori Kegiatan</label>
+                    <select id="galCategory" class="w-full px-4 py-2.5 rounded-xl glass-input text-sm">
+                        <!-- Populated dynamically via JS -->
+                    </select>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between mb-1.5">
+                        <label class="block text-xs font-semibold text-rose-100/90">Sumber Foto (Folder <code class="text-rose-300">img/</code> atau URL)</label>
+                        <label class="text-[11px] font-semibold text-amber-300 hover:text-amber-200 cursor-pointer flex items-center gap-1">
+                            <i class="fas fa-folder-open"></i> Pilih File di Folder img/
+                            <input type="file" id="galFilePicker" accept="image/*" onchange="handleGalleryFolderFilePick(event)" class="hidden">
+                        </label>
+                    </div>
+                    <input type="text" id="galImage" oninput="updateGalleryPreview(this.value)" class="w-full px-4 py-2.5 rounded-xl glass-input text-sm font-mono" placeholder="img/kegiatan_01.jpg atau https://..." required>
+                    
+                    <!-- Preset Quick Picker for Folder img/ -->
+                    <div class="mt-2 flex flex-wrap items-center gap-1.5">
+                        <span class="text-[11px] text-rose-200/70 mr-1">Aset folder <code class="text-rose-300">img/</code>:</span>
+                        <button type="button" onclick="selectGalleryPresetImg('img/rev_kholil.png')" class="px-2 py-1 rounded-lg bg-white/10 hover:bg-rose-600/40 border border-rose-300/20 text-[11px] text-rose-100 font-mono transition">img/rev_kholil.png</button>
+                        <button type="button" onclick="selectGalleryPresetImg('img/rev_Liesa_1.png')" class="px-2 py-1 rounded-lg bg-white/10 hover:bg-rose-600/40 border border-rose-300/20 text-[11px] text-rose-100 font-mono transition">img/rev_Liesa_1.png</button>
+                        <button type="button" onclick="selectGalleryPresetImg('img/rev_arfian.png')" class="px-2 py-1 rounded-lg bg-white/10 hover:bg-rose-600/40 border border-rose-300/20 text-[11px] text-rose-100 font-mono transition">img/rev_arfian.png</button>
+                        <button type="button" onclick="selectGalleryPresetImg('img/rev_sugie.jpeg')" class="px-2 py-1 rounded-lg bg-white/10 hover:bg-rose-600/40 border border-rose-300/20 text-[11px] text-rose-100 font-mono transition">img/rev_sugie.jpeg</button>
+                    </div>
+
+                    <!-- Live Image Preview -->
+                    <div class="mt-3 relative h-36 rounded-2xl overflow-hidden border border-rose-300/20 bg-maroon-950/80">
+                        <img id="galImagePreview" src="" alt="Pratinjau Foto" onerror="this.src='https://placehold.co/600x300/3b0404/fda4af?text=Pratinjau+Folder+img/'" class="w-full h-full object-cover">
+                        <span id="galPathBadge" class="absolute bottom-2 left-2 px-2.5 py-1 rounded-lg bg-maroon-950/85 border border-rose-300/25 text-[10px] font-mono text-rose-200">img/</span>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">Keterangan Singkat</label>
+                    <textarea id="galDesc" rows="2" class="w-full px-4 py-2.5 rounded-xl glass-input text-sm" required></textarea>
+                </div>
+                <div class="flex justify-end gap-3 pt-2">
+                    <button type="button" onclick="closeGalleryEditor()" class="px-4 py-2.5 rounded-xl glass-panel text-sm font-semibold text-rose-100">Batal</button>
+                    <button type="submit" class="glow-btn-primary text-white px-5 py-2.5 rounded-xl text-sm font-bold">Simpan Foto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 4B. Admin Category Manager Modal (For News, Articles & Gallery) -->
+    <div id="categoryManagerModal" class="hidden fixed inset-0 bg-maroon-950/85 z-[126] flex items-center justify-center p-4 backdrop-blur-md">
+        <div class="glass-panel rounded-3xl max-w-lg w-full p-6 sm:p-8 border border-rose-400/35 shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-5 pb-3 border-b border-rose-200/15">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-300">
+                        <i class="fas fa-tags"></i>
+                    </div>
+                    <div>
+                        <h3 id="catManagerTitle" class="text-lg font-bold text-white">Kelola Kategori</h3>
+                        <p id="catManagerSubtitle" class="text-[11px] text-rose-200/70">Tambah, perbarui, atau hapus daftar kategori</p>
+                    </div>
+                </div>
+                <button onclick="closeCategoryManager()" class="w-9 h-9 rounded-full hover:bg-white/10 text-rose-200/70 hover:text-white flex items-center justify-center text-xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Add New Category Form -->
+            <form onsubmit="addNewCategory(event)" class="flex gap-2 mb-5">
+                <input type="hidden" id="catManagerSection">
+                <input type="text" id="newCategoryInput" class="flex-1 px-4 py-2.5 rounded-xl glass-input text-sm" placeholder="Nama kategori baru..." required>
+                <button type="submit" class="glow-btn-primary text-white px-4 py-2.5 rounded-xl text-xs font-bold whitespace-nowrap flex items-center gap-1.5">
+                    <i class="fas fa-plus"></i> Tambah
+                </button>
+            </form>
+
+            <!-- Active Categories List -->
+            <div class="space-y-2.5" id="categoryManagerList">
+                <!-- Rendered dynamically via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Admin Project Editor Modal -->
+    <div id="projectEditorModal" class="hidden fixed inset-0 bg-maroon-950/85 z-[120] flex items-center justify-center p-4 backdrop-blur-md">
+        <div class="glass-panel rounded-3xl max-w-xl w-full p-6 sm:p-8 border border-rose-400/35 shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6 pb-3 border-b border-rose-200/15">
+                <h3 id="projectEditorTitle" class="text-lg font-bold text-white">Tambah Proyek Strategis</h3>
+                <button onclick="closeProjectEditor()" class="text-rose-200/70 hover:text-white text-xl"><i class="fas fa-times"></i></button>
+            </div>
+            <form onsubmit="saveProjectItem(event)" class="space-y-4">
+                <input type="hidden" id="editProjId">
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">Label Mitra / Program</label>
+                        <input type="text" id="projBadge" class="w-full px-4 py-2.5 rounded-xl glass-input text-sm" placeholder="Contoh: ASEAN-JAIF PROJECT" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">Periode Tahun</label>
+                        <input type="text" id="projPeriod" class="w-full px-4 py-2.5 rounded-xl glass-input text-sm" placeholder="Contoh: 2024 - SEKARANG" required>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">Judul Proyek Strategis</label>
+                    <input type="text" id="projTitle" class="w-full px-4 py-2.5 rounded-xl glass-input text-sm" required>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">URL Gambar Latar Proyek</label>
+                    <input type="url" id="projImage" class="w-full px-4 py-2.5 rounded-xl glass-input text-sm" placeholder="https://images.unsplash.com/..." required>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">Deskripsi Singkat Proyek</label>
+                    <textarea id="projDesc" rows="3" class="w-full px-4 py-2.5 rounded-xl glass-input text-sm" required></textarea>
+                </div>
+                <div class="flex justify-end gap-3 pt-2">
+                    <button type="button" onclick="closeProjectEditor()" class="px-4 py-2.5 rounded-xl glass-panel text-sm font-semibold text-rose-100">Batal</button>
+                    <button type="submit" class="glow-btn-primary text-white px-5 py-2.5 rounded-xl text-sm font-bold">Simpan Proyek</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 6. Online JSON Database Management Modal -->
+    <div id="jsonDbModal" class="hidden fixed inset-0 bg-maroon-950/85 z-[126] flex items-center justify-center p-4 backdrop-blur-md">
+        <div class="glass-panel rounded-3xl max-w-3xl w-full p-6 sm:p-8 border border-emerald-400/35 shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-5 pb-3 border-b border-rose-200/15">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-300">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Online JSON Database Engine</h3>
+                        <p class="text-[11px] text-rose-200/70">Sinkronisasi REST API JSON saat deploy, ekspor & impor database.json</p>
+                    </div>
+                </div>
+                <button onclick="closeJsonDbModal()" class="w-9 h-9 rounded-full hover:bg-white/10 text-rose-200/70 hover:text-white flex items-center justify-center text-xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <form onsubmit="saveCloudDbConfig(event)" class="space-y-4 mb-6">
+                <div>
+                    <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">Endpoint URL JSON Online (JSONBin.io / npoint.io / API REST)</label>
+                    <input type="url" id="cloudApiUrl" class="w-full px-4 py-2.5 rounded-xl glass-input text-xs font-mono" placeholder="https://api.jsonbin.io/v3/b/YOUR_BIN_ID">
+                </div>
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">HTTP Method Update</label>
+                        <select id="cloudHttpMethod" class="w-full px-4 py-2.5 rounded-xl glass-input text-xs">
+                            <option value="PUT">PUT (JSONBin / REST Standard)</option>
+                            <option value="POST">POST (npoint.io / Custom Webhook)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-rose-100/90 mb-1.5">API Key / X-Master-Key (Opsional)</label>
+                        <input type="password" id="cloudApiKey" class="w-full px-4 py-2.5 rounded-xl glass-input text-xs font-mono" placeholder="$2a$10$...">
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-2.5 pt-1">
+                    <button type="submit" class="glow-btn-primary text-white px-4 py-2.5 rounded-xl text-xs font-bold flex items-center gap-1.5">
+                        <i class="fas fa-save"></i> Simpan Konfigurasi API
+                    </button>
+                    <button type="button" onclick="pullFromCloudJson()" class="px-4 py-2.5 rounded-xl bg-sky-600/25 hover:bg-sky-600/40 border border-sky-400/40 text-sky-200 text-xs font-semibold flex items-center gap-1.5">
+                        <i class="fas fa-cloud-download-alt"></i> Tarik Data Online
+                    </button>
+                    <button type="button" onclick="pushToCloudJson()" class="px-4 py-2.5 rounded-xl bg-emerald-600/25 hover:bg-emerald-600/40 border border-emerald-400/40 text-emerald-200 text-xs font-semibold flex items-center gap-1.5">
+                        <i class="fas fa-cloud-upload-alt"></i> Dorong Data Online
+                    </button>
+                </div>
+            </form>
+
+            <div class="space-y-2">
+                <div class="flex flex-wrap justify-between items-center gap-2">
+                    <label class="text-xs font-semibold text-rose-100/90">Live JSON Payload (<code class="text-emerald-300">database.json</code>)</label>
+                    <div class="flex flex-wrap gap-2">
+                        <button type="button" onclick="downloadJsonDatabase()" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-rose-100 text-[11px] font-semibold flex items-center gap-1.5">
+                            <i class="fas fa-download"></i> Unduh JSON
+                        </button>
+                        <label class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-rose-100 text-[11px] font-semibold flex items-center gap-1.5 cursor-pointer">
+                            <i class="fas fa-upload"></i> Impor File JSON
+                            <input type="file" accept=".json,application/json" onchange="importJsonFile(event)" class="hidden">
+                        </label>
+                    </div>
+                </div>
+                <textarea id="rawJsonEditor" rows="9" class="w-full p-3.5 rounded-xl glass-input text-xs font-mono leading-relaxed"></textarea>
+                <div class="flex justify-end pt-2">
+                    <button type="button" onclick="applyRawJsonEdit()" class="px-4 py-2 rounded-xl bg-amber-500/25 hover:bg-amber-500/40 border border-amber-400/40 text-amber-200 text-xs font-bold">
+                        Terapkan Perubahan JSON Manual
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- APPLICATION LOGIC (STATE MANAGEMENT & INTERACTIVITY)                  -->
+    <!-- ===================================================================== -->
+    <script>
+        // State Management & Cryptographic Security Constants
+        let isAdmin = false;
+        let activeNewsFilter = 'Semua';
+        let activeArticleFilter = 'Semua';
+        let activeGalleryFilter = 'Semua';
+
+        // JSON Database Storage Keys & Cloud Sync Configuration
+        const JSON_DB_STORAGE_KEY = 'cs_master_database_json_v1';
+        const JSON_CLOUD_CFG_KEY = 'cs_cloud_json_config_v1';
+        let cloudDbConfig = {
+            apiUrl: '',
+            method: 'PUT',
+            apiKey: ''
+        };
+
+        // Initial Default Datasets (Categories, Projects, News, Articles, Gallery, Inquiries)
+        const DEFAULT_DB_SEED = {
+            meta: {
+                system: 'Center of System - Smart System for Better Life',
+                version: '2.8.0',
+                lastUpdated: '17 Nov 2026'
+            },
+            security: {
+                algorithm: 'SHA-256-SALTED',
+                salt: '',
+                hash: '',
+                isDefault: true,
+                updatedAt: '17 Nov 2026'
+            },
+            categories: {
+                news: ['Kerjasama Strategis', 'Seminar & Forum', 'Program Pelatihan'],
+                article: ['System Thinking', 'Rantai Nilai', 'Kebijakan & Lingkungan'],
+                gallery: ['Seminar & Forum', 'Riset Lapangan', 'Pelatihan Eksekutif']
+            },
+            projects: [
+                {
+                    id: 1,
+                    badge: 'ASEAN-JAIF PROJECT',
+                    period: '2018 - 2019',
+                    title: 'Postharvest Loss Reduction of Agricultural Products',
+                    image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=600',
+                    description: 'Proyek kolaborasi lintas negara ASEAN untuk efisiensi rantai pasok produk pertanian melalui rekayasa teknologi sistem cerdas.'
+                },
+                {
+                    id: 2,
+                    badge: 'ADB TECHNICAL ASSISTANT',
+                    period: '2020 - SEKARANG',
+                    title: 'Value Chain Analysis for Horticulture Products',
+                    image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=600',
+                    description: 'Analisis mendalam terhadap rantai nilai produk hortikultura di Indonesia untuk Asian Development Bank guna meningkatkan daya saing ekspor.'
+                }
+            ],
+            news: [
+                {
+                    id: 1,
+                    title: 'Center of System Memperluas Kerjasama Strategis dengan Asian Development Bank',
+                    category: 'Kerjasama Strategis',
+                    image: 'https://images.unsplash.com/photo-1591115765373-520b7a21769b?auto=format&fit=crop&q=80&w=600',
+                    date: '15 Okt 2026',
+                    author: 'Redaksi CS',
+                    preview: 'CS resmi memperpanjang kemitraan teknis untuk analisis rantai nilai pangan berkelanjutan di kawasan Asia Tenggara.',
+                    content: 'Dalam pertemuan tahunan yang diadakan di Jakarta, Center of System (CS) secara resmi menandatangani kesepakatan perluasan kerjasama dengan Asian Development Bank (ADB).\n\nKerjasama ini difokuskan pada pengembangan metodologi analisis rantai nilai untuk produk-produk hortikultura unggulan di Indonesia guna meningkatkan ekspor nasional dan kesejahteraan petani melalui integrasi sistem informasi cerdas.'
+                },
+                {
+                    id: 2,
+                    title: 'Seminar Internasional: Masa Depan "System Dynamics" di Era AI',
+                    category: 'Seminar & Forum',
+                    image: 'https://images.unsplash.com/photo-1540575861501-7c93b177ef36?auto=format&fit=crop&q=80&w=600',
+                    date: '02 Nov 2026',
+                    author: 'Sekretariat CS',
+                    preview: 'Direktur Utama CS, Prof. Dr. Kholil, menjadi pembicara kunci dalam forum sains sistem global mengenai integrasi AI dan pemodelan.',
+                    content: 'Prof. Dr. Kholil, M.Kom, IPU menekankan pentingnya sinergi antara Artificial Intelligence (AI) dengan pemodelan System Dynamics untuk memprediksi perubahan iklim dan dampaknya terhadap ekonomi regional.\n\nForum ini dihadiri para pakar sistem dari berbagai negara dan memperkuat posisi Center of System sebagai lembaga rujukan sains sistem di tingkat regional.'
+                },
+                {
+                    id: 3,
+                    title: 'Peluncuran Program Executive System Thinking Batch Terbaru',
+                    category: 'Program Pelatihan',
+                    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=600',
+                    date: '12 Nov 2026',
+                    author: 'Divisi Pelatihan',
+                    preview: 'CS kembali membuka program pengembangan kepemimpinan berbasis System Thinking untuk para pimpinan lembaga dan eksekutif.',
+                    content: 'Menanggapi tingginya kebutuhan pengambilan keputusan berbasis sistem, CS resmi meluncurkan batch terbaru program "Executive System Thinking for Leaders".\n\nProgram ini dirancang khusus untuk membantu para eksekutif memahami kompleksitas organisasi sebagai sebuah ekosistem yang saling terhubung.'
+                }
+            ],
+            articles: [
+                {
+                    id: 1,
+                    title: 'Memahami "System Thinking" dalam Solusi Sosial Kompleks',
+                    category: 'System Thinking',
+                    image: 'https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=600',
+                    date: '12 Okt 2026',
+                    author: 'Prof. Dr. Kholil',
+                    preview: 'Mengapa pendekatan konvensional sering gagal menghadapi masalah sosial yang saling terkait? Mari dalami pendekatan Soft Systems Methodology.',
+                    content: 'Seringkali masalah dalam masyarakat tidak memiliki solusi linear. Pendekatan System Thinking yang dipelopori Peter Checkland menawarkan kerangka kerja bernama Soft Systems Methodology (SSM).\n\nSSM membantu kita memetakan hubungan antar aktor, struktur kelembagaan, dan nilai sosial sehingga kita dapat menemukan titik ungkit (leverage point) untuk perubahan yang berkelanjutan.'
+                },
+                {
+                    id: 2,
+                    title: 'Transformasi Digital Rantai Nilai Hortikultura di Indonesia',
+                    category: 'Rantai Nilai',
+                    image: 'https://images.unsplash.com/photo-1533900298318-6b8da08a523e?auto=format&fit=crop&q=80&w=600',
+                    date: '25 Okt 2026',
+                    author: 'Sugiyono, STP, M.Sc',
+                    preview: 'Analisis teknis mengenai efisiensi distribusi produk pertanian dari petani ke pasar global menggunakan pemodelan sistem dinamik.',
+                    content: 'Indonesia memiliki potensi hortikultura yang luar biasa, namun tingkat kehilangan pascapanen (post-harvest loss) masih perlu ditekan.\n\nMelalui pemodelan sistem dinamik, CS mengidentifikasi bahwa integrasi informasi harga, logistik rantai dingin, dan kelembagaan petani dapat meningkatkan efisiensi distribusi hingga 20%.'
+                },
+                {
+                    id: 3,
+                    title: 'Sustainable Development: Ekosistem & Kebijakan Publik Terpadu',
+                    category: 'Kebijakan & Lingkungan',
+                    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=600',
+                    date: '08 Nov 2026',
+                    author: 'Ir. Liesa Larasati, M.M',
+                    preview: 'Membangun ekosistem berkelanjutan memerlukan keterpaduan antara pendidikan, teknologi cerdas, dan regulasi yang adaptif.',
+                    content: 'Keberlanjutan hanya dapat tercapai apabila pengelolaan lingkungan diperlakukan sebagai modal alam yang memiliki daya dukung dan batas regenerasi.\n\nCS melakukan riset kebijakan berbasis simulasi untuk memastikan setiap perencanaan pembangunan mempertimbangkan siklus hidup material dan energi secara sirkular.'
+                }
+            ],
+            gallery: [
+                {
+                    id: 1,
+                    title: 'Simposium Nasional Pemodelan Sistem Dinamik',
+                    category: 'Seminar & Forum',
+                    image: 'https://images.unsplash.com/photo-1540575861501-7c93b177ef36?auto=format&fit=crop&q=80&w=800',
+                    desc: 'Diskusi panel para pakar kebijakan dan akademisi dalam merumuskan peta jalan Smart System Nasional.',
+                    date: 'Oktober 2026'
+                },
+                {
+                    id: 2,
+                    title: 'Survei Lapangan Rantai Nilai Hortikultura',
+                    category: 'Riset Lapangan',
+                    image: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=800',
+                    desc: 'Tim ahli Center of System melakukan observasi sistem logistik pascapanen bersama mitra petani daerah.',
+                    date: 'September 2026'
+                },
+                {
+                    id: 3,
+                    title: 'Workshop Executive System Thinking',
+                    category: 'Pelatihan Eksekutif',
+                    image: 'https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&q=80&w=800',
+                    desc: 'Sesi simulasi interaktif pengambilan keputusan strategis bagi pimpinan lembaga pemerintah dan swasta.',
+                    date: 'November 2026'
+                }
+            ],
+            inquiries: [
+                {
+                    id: 1,
+                    name: 'Dr. Hendra Wijaya (Bappeda Provinsi)',
+                    email: 'hendra.w@bappeda.go.id',
+                    date: '14 Nov 2026, 09:30',
+                    message: 'Apakah Center of System menyediakan pendampingan penyusunan model System Dynamics untuk perencanaan ketahanan pangan daerah?',
+                    response: 'Terima kasih Dr. Hendra. Ya, tim ahli kami menyediakan layanan pendampingan penuh mulai dari pemetaan Causal Loop Diagram (CLD), simulasi model kuantitatif, hingga pelatihan teknis bagi tim perencana daerah. Silakan hubungi sekretariat kami untuk penjadwalan audiensi.',
+                    respondedAt: '14 Nov 2026 • Admin CS'
+                },
+                {
+                    id: 2,
+                    name: 'Rina Kusuma (Manajer Riset ESG)',
+                    email: 'rina.kusuma@greenindustry.co.id',
+                    date: '16 Nov 2026, 14:15',
+                    message: 'Kapan jadwal pendaftaran pelatihan Executive System Thinking batch berikutnya dibuka untuk peserta korporasi?',
+                    response: null,
+                    respondedAt: null
+                }
+            ]
+        };
+
+        // Active In-Memory State Bound to JSON Database
+        let securityData = JSON.parse(JSON.stringify(DEFAULT_DB_SEED.security));
+        let categoriesData = JSON.parse(JSON.stringify(DEFAULT_DB_SEED.categories));
+        let projectsData = JSON.parse(JSON.stringify(DEFAULT_DB_SEED.projects));
+        let newsData = JSON.parse(JSON.stringify(DEFAULT_DB_SEED.news));
+        let articlesData = JSON.parse(JSON.stringify(DEFAULT_DB_SEED.articles));
+        let galleryData = JSON.parse(JSON.stringify(DEFAULT_DB_SEED.gallery));
+        let inquiriesData = JSON.parse(JSON.stringify(DEFAULT_DB_SEED.inquiries));
+
+        // =====================================================================
+        // ONLINE JSON DATABASE ENGINE (LOCAL + DEPLOYED CLOUD REST SYNC)
+        // =====================================================================
+
+        function buildMasterJsonPayload() {
+            return {
+                meta: {
+                    system: 'Center of System - Smart System for Better Life',
+                    version: '2.8.0',
+                    lastUpdated: new Date().toISOString()
+                },
+                security: securityData,
+                categories: categoriesData,
+                projects: projectsData,
+                news: newsData,
+                articles: articlesData,
+                gallery: galleryData,
+                inquiries: inquiriesData
+            };
+        }
+
+        function applyMasterJsonPayload(payload) {
+            if (!payload || typeof payload !== 'object') return false;
+            // Support JSONBin v3 { record: { ... } } wrapper or direct root object
+            const root = (payload.record && typeof payload.record === 'object' && (payload.record.news || payload.record.projects))
+                ? payload.record
+                : payload;
+
+            if (root.security && typeof root.security === 'object' && root.security.salt && root.security.hash) {
+                securityData = {
+                    algorithm: root.security.algorithm || 'SHA-256-SALTED',
+                    salt: root.security.salt,
+                    hash: root.security.hash,
+                    isDefault: Boolean(root.security.isDefault),
+                    updatedAt: root.security.updatedAt || formatCurrentDate()
+                };
+                updatePasswordHintUI();
+            }
+            if (root.categories && typeof root.categories === 'object') {
+                if (Array.isArray(root.categories.news)) categoriesData.news = root.categories.news;
+                if (Array.isArray(root.categories.article)) categoriesData.article = root.categories.article;
+                if (Array.isArray(root.categories.gallery)) categoriesData.gallery = root.categories.gallery;
+            }
+            if (Array.isArray(root.projects)) projectsData = root.projects;
+            if (Array.isArray(root.news)) newsData = root.news;
+            if (Array.isArray(root.articles)) articlesData = root.articles;
+            if (Array.isArray(root.gallery)) galleryData = root.gallery;
+            if (Array.isArray(root.inquiries)) inquiriesData = root.inquiries;
+            return true;
+        }
+
+        function renderAllSections() {
+            renderCategoryFilterPills('news');
+            renderCategoryFilterPills('article');
+            renderCategoryFilterPills('gallery');
+            renderProjects();
+            renderNews();
+            renderArticles();
+            renderGallery();
+            renderInquiries();
+        }
+
+        function updateDbSyncBadge(statusText, isOnline = false) {
+            const badge = document.getElementById('dbSyncBadge');
+            if (!badge) return;
+            badge.innerHTML = `<i class="fas ${isOnline ? 'fa-cloud' : 'fa-database'} text-[10px]"></i> ${escapeHtml(statusText)}`;
+        }
+
+        async function initJsonDatabase() {
+            try {
+                const savedCfg = localStorage.getItem(JSON_CLOUD_CFG_KEY);
+                if (savedCfg) {
+                    cloudDbConfig = { ...cloudDbConfig, ...JSON.parse(savedCfg) };
+                }
+
+                const localRaw = localStorage.getItem(JSON_DB_STORAGE_KEY);
+                if (localRaw) {
+                    applyMasterJsonPayload(JSON.parse(localRaw));
+                }
+
+                // Try fetching online JSON endpoint if configured, else fallback to ./database.json if deployed
+                if (cloudDbConfig.apiUrl) {
+                    const headers = { 'Accept': 'application/json' };
+                    if (cloudDbConfig.apiKey) headers['X-Master-Key'] = cloudDbConfig.apiKey;
+                    const res = await fetch(cloudDbConfig.apiUrl, { headers });
+                    if (res.ok) {
+                        const remoteData = await res.json();
+                        if (applyMasterJsonPayload(remoteData)) {
+                            localStorage.setItem(JSON_DB_STORAGE_KEY, JSON.stringify(buildMasterJsonPayload()));
+                            updateDbSyncBadge('Cloud JSON Terhubung', true);
+                        }
+                    }
+                } else {
+                    const staticRes = await fetch('./database.json', { cache: 'no-store' }).catch(() => null);
+                    if (staticRes && staticRes.ok && !localRaw) {
+                        const staticData = await staticRes.json();
+                        if (applyMasterJsonPayload(staticData)) {
+                            localStorage.setItem(JSON_DB_STORAGE_KEY, JSON.stringify(buildMasterJsonPayload()));
+                            updateDbSyncBadge('Deployed database.json', true);
+                        }
+                    }
+                }
+            } catch (err) {
+                console.warn('JSON DB Init fallback to local seed:', err);
+            }
+        }
+
+        async function persistJsonDatabase(silent = false) {
+            const payload = buildMasterJsonPayload();
+            try {
+                localStorage.setItem(JSON_DB_STORAGE_KEY, JSON.stringify(payload));
+            } catch (err) {
+                console.warn('LocalStorage write warning:', err);
+            }
+
+            if (cloudDbConfig.apiUrl) {
+                try {
+                    const headers = { 'Content-Type': 'application/json' };
+                    if (cloudDbConfig.apiKey) headers['X-Master-Key'] = cloudDbConfig.apiKey;
+                    const res = await fetch(cloudDbConfig.apiUrl, {
+                        method: cloudDbConfig.method || 'PUT',
+                        headers,
+                        body: JSON.stringify(payload)
+                    });
+                    if (res.ok) {
+                        updateDbSyncBadge('Cloud JSON Tersinkron', true);
+                        if (!silent) showToast('Database berhasil disinkronkan ke Cloud JSON!', 'success');
+                    }
+                } catch (err) {
+                    updateDbSyncBadge('Tersimpan Lokal (Offline)', false);
+                }
+            }
+        }
+
+        function openJsonDbModal() {
+            if (!isAdmin) return;
+            document.getElementById('cloudApiUrl').value = cloudDbConfig.apiUrl || '';
+            document.getElementById('cloudHttpMethod').value = cloudDbConfig.method || 'PUT';
+            document.getElementById('cloudApiKey').value = cloudDbConfig.apiKey || '';
+            document.getElementById('rawJsonEditor').value = JSON.stringify(buildMasterJsonPayload(), null, 2);
+            document.getElementById('jsonDbModal').classList.remove('hidden');
+        }
+
+        function closeJsonDbModal() {
+            document.getElementById('jsonDbModal').classList.add('hidden');
+        }
+
+        async function saveCloudDbConfig(e) {
+            e.preventDefault();
+            cloudDbConfig.apiUrl = document.getElementById('cloudApiUrl').value.trim();
+            cloudDbConfig.method = document.getElementById('cloudHttpMethod').value;
+            cloudDbConfig.apiKey = document.getElementById('cloudApiKey').value.trim();
+            localStorage.setItem(JSON_CLOUD_CFG_KEY, JSON.stringify(cloudDbConfig));
+            updateDbSyncBadge(cloudDbConfig.apiUrl ? 'Cloud JSON Siap' : 'JSON Local DB', Boolean(cloudDbConfig.apiUrl));
+            showToast('Konfigurasi Online JSON API berhasil disimpan!', 'success');
+        }
+
+        async function pullFromCloudJson() {
+            const url = document.getElementById('cloudApiUrl').value.trim() || cloudDbConfig.apiUrl;
+            const key = document.getElementById('cloudApiKey').value.trim() || cloudDbConfig.apiKey;
+            if (!url) {
+                showToast('Masukkan Endpoint URL JSON terlebih dahulu.', 'error');
+                return;
+            }
+            try {
+                const headers = { 'Accept': 'application/json' };
+                if (key) headers['X-Master-Key'] = key;
+                const res = await fetch(url, { headers });
+                if (!res.ok) throw new Error('HTTP ' + res.status);
+                const data = await res.json();
+                if (applyMasterJsonPayload(data)) {
+                    localStorage.setItem(JSON_DB_STORAGE_KEY, JSON.stringify(buildMasterJsonPayload()));
+                    document.getElementById('rawJsonEditor').value = JSON.stringify(buildMasterJsonPayload(), null, 2);
+                    renderAllSections();
+                    updateDbSyncBadge('Cloud JSON Tersinkron', true);
+                    showToast('Data berhasil ditarik dari server JSON online!', 'success');
+                }
+            } catch (err) {
+                showToast('Gagal menarik data dari URL JSON: ' + err.message, 'error');
+            }
+        }
+
+        async function pushToCloudJson() {
+            const url = document.getElementById('cloudApiUrl').value.trim() || cloudDbConfig.apiUrl;
+            const method = document.getElementById('cloudHttpMethod').value || cloudDbConfig.method || 'PUT';
+            const key = document.getElementById('cloudApiKey').value.trim() || cloudDbConfig.apiKey;
+            if (!url) {
+                showToast('Masukkan Endpoint URL JSON terlebih dahulu.', 'error');
+                return;
+            }
+            cloudDbConfig = { apiUrl: url, method, apiKey: key };
+            localStorage.setItem(JSON_CLOUD_CFG_KEY, JSON.stringify(cloudDbConfig));
+            await persistJsonDatabase(false);
+        }
+
+        function downloadJsonDatabase() {
+            const blob = new Blob([JSON.stringify(buildMasterJsonPayload(), null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'database.json';
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast('File database.json berhasil diunduh!', 'success');
+        }
+
+        function importJsonFile(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = async (ev) => {
+                try {
+                    const parsed = JSON.parse(ev.target.result);
+                    if (applyMasterJsonPayload(parsed)) {
+                        document.getElementById('rawJsonEditor').value = JSON.stringify(buildMasterJsonPayload(), null, 2);
+                        renderAllSections();
+                        await persistJsonDatabase(true);
+                        showToast('File JSON berhasil diimpor ke database!', 'success');
+                    }
+                } catch (err) {
+                    showToast('Format file JSON tidak valid.', 'error');
+                }
+            };
+            reader.readAsText(file);
+        }
+
+        async function applyRawJsonEdit() {
+            try {
+                const parsed = JSON.parse(document.getElementById('rawJsonEditor').value);
+                if (applyMasterJsonPayload(parsed)) {
+                    renderAllSections();
+                    await persistJsonDatabase(true);
+                    showToast('Perubahan struktur JSON berhasil diterapkan!', 'success');
+                }
+            } catch (err) {
+                showToast('Sintaks JSON tidak valid: ' + err.message, 'error');
+            }
+        }
+
+        // =====================================================================
+        // ADMIN AUTHENTICATION (SHA-256 + CRYPTOGRAPHIC SALT IN JSON DATABASE)
+        // =====================================================================
+
+        const LEGACY_AUTH_STORAGE_KEY = 'cs_admin_encrypted_auth_v1';
+
+        function generateRandomSalt(byteLength = 16) {
+            const arr = new Uint8Array(byteLength);
+            if (window.crypto && window.crypto.getRandomValues) {
+                window.crypto.getRandomValues(arr);
+            } else {
+                for (let i = 0; i < byteLength; i++) arr[i] = Math.floor(Math.random() * 256);
+            }
+            return Array.from(arr, b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // Pure JS SHA-256 fallback for environments where window.crypto.subtle is unavailable (e.g., non-HTTPS/sandbox)
+        function sha256FallbackHex(ascii) {
+            const rightRotate = (value, amount) => (value >>> amount) | (value << (32 - amount));
+            const mathPow = Math.pow;
+            const maxWord = mathPow(2, 32);
+            let result = '';
+            const words = [];
+            const asciiBitLength = ascii.length * 8;
+            const hash = [];
+            const k = [];
+            let primeCounter = 0;
+            const isComposite = {};
+
+            for (let candidate = 2; primeCounter < 64; candidate++) {
+                if (!isComposite[candidate]) {
+                    for (let i = 0; i < 313; i += candidate) isComposite[i] = candidate;
+                    hash[primeCounter] = (mathPow(candidate, 0.5) * maxWord) | 0;
+                    k[primeCounter++] = (mathPow(candidate, 1 / 3) * maxWord) | 0;
+                }
+            }
+
+            ascii += '\x80';
+            while ((ascii.length % 64) - 56) ascii += '\x00';
+            for (let i = 0; i < ascii.length; i++) {
+                const j = ascii.charCodeAt(i);
+                words[i >> 2] |= j << (((3 - i) % 4) * 8);
+            }
+            words[words.length] = (asciiBitLength / maxWord) | 0;
+            words[words.length] = asciiBitLength;
+
+            for (let j = 0; j < words.length;) {
+                const w = words.slice(j, (j += 16));
+                const oldHash = hash.slice(0);
+                for (let i = 0; i < 64; i++) {
+                    const w15 = w[i - 15], w2 = w[i - 2];
+                    const a = hash[0], e = hash[4];
+                    const temp1 = hash[7] +
+                        (rightRotate(e, 6) ^ rightRotate(e, 11) ^ rightRotate(e, 25)) +
+                        ((e & hash[5]) ^ (~e & hash[6])) +
+                        k[i] +
+                        (w[i] = i < 16 ? w[i] : (
+                            w[i - 16] +
+                            (rightRotate(w15, 7) ^ rightRotate(w15, 18) ^ (w15 >>> 3)) +
+                            w[i - 7] +
+                            (rightRotate(w2, 17) ^ rightRotate(w2, 19) ^ (w2 >>> 10))
+                        ) | 0);
+                    const temp2 = (rightRotate(a, 2) ^ rightRotate(a, 13) ^ rightRotate(a, 22)) +
+                        ((a & hash[1]) ^ (a & hash[2]) ^ (hash[1] & hash[2]));
+                    hash.unshift((temp1 + temp2) | 0);
+                    hash[4] = (hash[4] + temp1) | 0;
+                    hash.pop();
+                }
+                for (let i = 0; i < 8; i++) hash[i] = (hash[i] + oldHash[i]) | 0;
+            }
+            for (let i = 0; i < 8; i++) {
+                for (let j = 3; j + 1; j--) {
+                    const b = (hash[i] >> (j * 8)) & 255;
+                    result += (b < 16 ? 0 : '') + b.toString(16);
+                }
+            }
+            return result;
+        }
+
+        async function sha256SaltedHash(password, salt) {
+            const payload = `${salt}::${password}`;
+            if (window.crypto && window.crypto.subtle) {
+                try {
+                    const encoder = new TextEncoder();
+                    const data = encoder.encode(payload);
+                    const hashBuffer = await window.crypto.subtle.digest('SHA-256', data);
+                    return Array.from(new Uint8Array(hashBuffer), b => b.toString(16).padStart(2, '0')).join('');
+                } catch (e) {
+                    // Fallback if subtle crypto throws in restricted iframe
+                }
+            }
+            const utf8Payload = unescape(encodeURIComponent(payload));
+            return sha256FallbackHex(utf8Payload);
+        }
+
+        function updatePasswordHintUI() {
+            const hintEl = document.getElementById('defaultHintText');
+            if (!hintEl) return;
+            if (securityData && securityData.isDefault === false) {
+                hintEl.innerHTML = `<i class="fas fa-lock text-emerald-400 mr-1"></i>Sandi kustom aktif (Terenkripsi SHA-256 di JSON DB).`;
+            } else {
+                hintEl.innerHTML = `<i class="fas fa-info-circle mr-1"></i>Sandi bawaan awal: <code class="bg-white/10 px-1.5 py-0.5 rounded font-mono text-white">admin123</code>`;
+            }
+        }
+
+        async function initAdminSecurity() {
+            try {
+                // Migrate legacy auth storage into JSON database if JSON security block is empty
+                const legacyRaw = localStorage.getItem(LEGACY_AUTH_STORAGE_KEY);
+                if (!securityData.salt || !securityData.hash) {
+                    if (legacyRaw) {
+                        const legacyParsed = JSON.parse(legacyRaw);
+                        if (legacyParsed.salt && legacyParsed.hash) {
+                            securityData = {
+                                algorithm: 'SHA-256-SALTED',
+                                salt: legacyParsed.salt,
+                                hash: legacyParsed.hash,
+                                isDefault: Boolean(legacyParsed.isDefault),
+                                updatedAt: formatCurrentDate()
+                            };
+                        }
+                    }
+                }
+
+                // Initialize default salted SHA-256 hash in JSON database if still uninitialized
+                if (!securityData.salt || !securityData.hash) {
+                    const defaultSalt = generateRandomSalt();
+                    const defaultHash = await sha256SaltedHash('admin123', defaultSalt);
+                    securityData = {
+                        algorithm: 'SHA-256-SALTED',
+                        salt: defaultSalt,
+                        hash: defaultHash,
+                        isDefault: true,
+                        updatedAt: formatCurrentDate()
+                    };
+                }
+
+                // Sync security node into stored JSON database without overwriting remote changes
+                localStorage.setItem(JSON_DB_STORAGE_KEY, JSON.stringify(buildMasterJsonPayload()));
+                updatePasswordHintUI();
+            } catch (err) {
+                console.warn('Admin security init fallback:', err);
+            }
+        }
+
+        function handleAdminTrigger() {
+            if (isAdmin) {
+                logoutAdmin();
+            } else {
+                document.getElementById('adminPasswordInput').value = '';
+                document.getElementById('adminLoginModal').classList.remove('hidden');
+            }
+        }
+
+        function closeAdminLoginModal() {
+            document.getElementById('adminLoginModal').classList.add('hidden');
+        }
+
+        function togglePasswordVisibility(inputId, iconId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+            if (!input || !icon) return;
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'fas fa-eye-slash text-sm';
+            } else {
+                input.type = 'password';
+                icon.className = 'fas fa-eye text-sm';
+            }
+        }
+
+        async function submitAdminLogin(e) {
+            e.preventDefault();
+            const pwd = document.getElementById('adminPasswordInput').value.trim();
+            try {
+                if (!securityData || !securityData.salt || !securityData.hash) {
+                    await initAdminSecurity();
+                }
+
+                let isValid = false;
+                if (securityData && securityData.salt && securityData.hash) {
+                    const candidateHash = await sha256SaltedHash(pwd, securityData.salt);
+                    isValid = (candidateHash === securityData.hash);
+                }
+
+                // Fallback verification if default password is still active
+                if (!isValid && (!securityData || securityData.isDefault !== false) && pwd === 'admin123') {
+                    isValid = true;
+                }
+
+                if (isValid) {
+                    isAdmin = true;
+                    updateAdminUI();
+                    closeAdminLoginModal();
+                    showToast('Berhasil masuk ke Mode Administrator!', 'success');
+                } else {
+                    showToast('Kata sandi admin tidak sesuai.', 'error');
+                }
+            } catch (err) {
+                showToast('Terjadi kesalahan verifikasi sandi.', 'error');
+            }
+        }
+
+        function logoutAdmin() {
+            isAdmin = false;
+            updateAdminUI();
+            showToast('Anda telah keluar dari Mode Admin.', 'info');
+        }
+
+        function updateAdminUI() {
+            const banner = document.getElementById('adminStatusBanner');
+            const btnText = document.getElementById('adminBtnText');
+            const btnIcon = document.getElementById('adminBtnIcon');
+            const adminElements = document.querySelectorAll('.admin-only');
+
+            if (isAdmin) {
+                banner.classList.remove('hidden');
+                if (btnText) btnText.textContent = 'Keluar Admin';
+                if (btnIcon) btnIcon.className = 'fas fa-unlock-alt text-emerald-400';
+                adminElements.forEach(el => el.classList.remove('hidden'));
+            } else {
+                banner.classList.add('hidden');
+                if (btnText) btnText.textContent = 'Portal Admin';
+                if (btnIcon) btnIcon.className = 'fas fa-shield-alt text-rose-400';
+                adminElements.forEach(el => el.classList.add('hidden'));
+            }
+
+            renderAllSections();
+        }
+
+        function openChangePasswordModal() {
+            if (!isAdmin) return;
+            document.getElementById('currentAdminPwd').value = '';
+            document.getElementById('newAdminPwd').value = '';
+            document.getElementById('confirmAdminPwd').value = '';
+            document.getElementById('changePasswordModal').classList.remove('hidden');
+        }
+
+        function closeChangePasswordModal() {
+            document.getElementById('changePasswordModal').classList.add('hidden');
+        }
+
+        async function submitChangePassword(e) {
+            e.preventDefault();
+            if (!isAdmin) return;
+
+            const currentPwd = document.getElementById('currentAdminPwd').value.trim();
+            const newPwd = document.getElementById('newAdminPwd').value.trim();
+            const confirmPwd = document.getElementById('confirmAdminPwd').value.trim();
+
+            if (newPwd !== confirmPwd) {
+                showToast('Konfirmasi kata sandi baru tidak cocok.', 'error');
+                return;
+            }
+
+            const currentHash = await sha256SaltedHash(currentPwd, securityData.salt);
+            const isCurrentValid = (currentHash === securityData.hash) || (securityData.isDefault !== false && currentPwd === 'admin123');
+            if (!isCurrentValid) {
+                showToast('Kata sandi saat ini salah.', 'error');
+                return;
+            }
+
+            const newSalt = generateRandomSalt();
+            const newHash = await sha256SaltedHash(newPwd, newSalt);
+            securityData = {
+                algorithm: 'SHA-256-SALTED',
+                salt: newSalt,
+                hash: newHash,
+                isDefault: false,
+                updatedAt: formatCurrentDate()
+            };
+
+            updatePasswordHintUI();
+            await persistJsonDatabase(true);
+
+            closeChangePasswordModal();
+            showToast('Kata sandi admin berhasil diperbarui & tersimpan terenkripsi di JSON Database!', 'success');
+        }
+
+        // =====================================================================
+        // STRATEGIC PROJECTS CRUD (ADMIN) & VIEW (GUEST)
+        // =====================================================================
+
+        function renderProjects() {
+            const container = document.getElementById('projectsList');
+            if (!container) return;
+
+            if (projectsData.length === 0) {
+                container.innerHTML = `<div class="glass-panel rounded-3xl p-8 text-center text-rose-200/70 text-sm">Belum ada data proyek strategis yang ditambahkan.</div>`;
+                return;
+            }
+
+            container.innerHTML = projectsData.map((proj, index) => {
+                const isReversed = index % 2 === 1;
+                return `
+                <div class="glass-card rounded-3xl overflow-hidden grid md:grid-cols-12 items-center relative group">
+                    <div class="md:col-span-4 h-56 md:h-full relative overflow-hidden ${isReversed ? 'md:order-2' : ''}">
+                        <img src="${escapeHtml(proj.image)}" 
+                             onerror="this.src='https://placehold.co/600x400/3b0404/fda4af?text=Proyek+Strategis'"
+                             alt="${escapeHtml(proj.title)}" 
+                             class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-r from-maroon-950/90 via-red-900/60 to-transparent flex items-center justify-center p-6">
+                            <span class="px-4 py-2 rounded-xl glass-panel text-white font-bold text-center text-sm tracking-wider border border-rose-300/30">${escapeHtml(proj.badge)}</span>
+                        </div>
+                    </div>
+                    <div class="md:col-span-8 p-6 sm:p-8 ${isReversed ? 'md:order-1' : ''}">
+                        <div class="flex flex-wrap justify-between items-start gap-2 mb-2">
+                            <span class="text-xs font-bold text-rose-300 uppercase tracking-widest">${escapeHtml(proj.period)}</span>
+                            ${isAdmin ? `
+                            <div class="flex gap-2">
+                                <button onclick="openProjectEditor(${proj.id})" class="px-3 py-1 rounded-lg bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/40 text-amber-200 text-xs font-semibold flex items-center gap-1 transition">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                                <button onclick="deleteProjectItem(${proj.id})" class="px-3 py-1 rounded-lg bg-rose-500/20 hover:bg-rose-500/35 border border-rose-400/40 text-rose-200 text-xs font-semibold flex items-center gap-1 transition">
+                                    <i class="fas fa-trash-alt"></i> Hapus
+                                </button>
+                            </div>` : ''}
+                        </div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-white mb-3">${escapeHtml(proj.title)}</h3>
+                        <p class="text-rose-100/75 text-sm leading-relaxed">${escapeHtml(proj.description)}</p>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function openProjectEditor(id = null) {
+            if (!isAdmin) return;
+            document.getElementById('editProjId').value = id || '';
+            if (id) {
+                const proj = projectsData.find(p => p.id === id);
+                if (!proj) return;
+                document.getElementById('projectEditorTitle').textContent = 'Perbarui Proyek Strategis';
+                document.getElementById('projBadge').value = proj.badge;
+                document.getElementById('projPeriod').value = proj.period;
+                document.getElementById('projTitle').value = proj.title;
+                document.getElementById('projImage').value = proj.image;
+                document.getElementById('projDesc').value = proj.description;
+            } else {
+                document.getElementById('projectEditorTitle').textContent = 'Tambah Proyek Strategis Baru';
+                document.getElementById('projBadge').value = '';
+                document.getElementById('projPeriod').value = '2026 - SEKARANG';
+                document.getElementById('projTitle').value = '';
+                document.getElementById('projImage').value = 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=600';
+                document.getElementById('projDesc').value = '';
+            }
+            document.getElementById('projectEditorModal').classList.remove('hidden');
+        }
+
+        function closeProjectEditor() {
+            document.getElementById('projectEditorModal').classList.add('hidden');
+        }
+
+        async function saveProjectItem(e) {
+            e.preventDefault();
+            if (!isAdmin) return;
+            const idVal = document.getElementById('editProjId').value;
+            const badge = document.getElementById('projBadge').value.trim();
+            const period = document.getElementById('projPeriod').value.trim();
+            const title = document.getElementById('projTitle').value.trim();
+            const image = document.getElementById('projImage').value.trim();
+            const description = document.getElementById('projDesc').value.trim();
+
+            if (idVal) {
+                const idx = projectsData.findIndex(p => p.id === Number(idVal));
+                if (idx > -1) {
+                    projectsData[idx] = { ...projectsData[idx], badge, period, title, image, description };
+                }
+                showToast('Proyek strategis berhasil diperbarui!', 'success');
+            } else {
+                projectsData.unshift({ id: Date.now(), badge, period, title, image, description });
+                showToast('Proyek strategis baru berhasil ditambahkan!', 'success');
+            }
+
+            renderProjects();
+            closeProjectEditor();
+            await persistJsonDatabase(true);
+        }
+
+        async function deleteProjectItem(id) {
+            if (!isAdmin) return;
+            projectsData = projectsData.filter(p => p.id !== id);
+            renderProjects();
+            await persistJsonDatabase(true);
+            showToast('Proyek strategis telah dihapus.', 'info');
+        }
+
+        // =====================================================================
+        // DYNAMIC CATEGORY MANAGEMENT (NEWS, ARTICLES & GALLERY)
+        // =====================================================================
+
+        function renderCategoryFilterPills(section) {
+            const containerMap = {
+                news: 'newsFilters',
+                article: 'articleFilters',
+                gallery: 'galleryFilters'
+            };
+            const activeMap = {
+                news: activeNewsFilter,
+                article: activeArticleFilter,
+                gallery: activeGalleryFilter
+            };
+            const fnMap = {
+                news: 'filterNews',
+                article: 'filterArticles',
+                gallery: 'filterGallery'
+            };
+            const allLabelMap = {
+                news: 'Semua Berita',
+                article: 'Semua Topik',
+                gallery: 'Semua Kegiatan'
+            };
+
+            const container = document.getElementById(containerMap[section]);
+            if (!container) return;
+
+            const activeVal = activeMap[section];
+            const fnName = fnMap[section];
+            const list = categoriesData[section] || [];
+
+            const allBtnClass = activeVal === 'Semua'
+                ? 'px-4 py-1.5 rounded-full text-xs font-semibold bg-red-800 border border-rose-400/40 text-white transition'
+                : 'px-4 py-1.5 rounded-full text-xs font-semibold glass-panel text-rose-100/80 hover:text-white transition';
+
+            let html = `<button onclick="${fnName}('Semua')" class="${allBtnClass}">${allLabelMap[section]}</button>`;
+            html += list.map(cat => {
+                const isSelected = activeVal === cat;
+                const btnClass = isSelected
+                    ? 'px-4 py-1.5 rounded-full text-xs font-semibold bg-red-800 border border-rose-400/40 text-white transition'
+                    : 'px-4 py-1.5 rounded-full text-xs font-semibold glass-panel text-rose-100/80 hover:text-white transition';
+                return `<button onclick="${fnName}('${escapeHtml(cat).replace(/'/g, "\\'")}')" class="${btnClass}">${escapeHtml(cat)}</button>`;
+            }).join('');
+
+            container.innerHTML = html;
+        }
+
+        function populateCategorySelect(selectId, section, selectedValue = '') {
+            const select = document.getElementById(selectId);
+            if (!select) return;
+            const list = categoriesData[section] || [];
+            const options = [...list];
+            if (selectedValue && !options.includes(selectedValue)) {
+                options.unshift(selectedValue);
+            }
+            select.innerHTML = options.map(cat =>
+                `<option value="${escapeHtml(cat)}" ${cat === selectedValue ? 'selected' : ''}>${escapeHtml(cat)}</option>`
+            ).join('');
+        }
+
+        function openCategoryManager(section) {
+            if (!isAdmin) return;
+            const titles = {
+                news: 'Kelola Kategori Berita',
+                article: 'Kelola Kategori Artikel',
+                gallery: 'Kelola Kategori Galeri'
+            };
+            document.getElementById('catManagerSection').value = section;
+            document.getElementById('catManagerTitle').textContent = titles[section] || 'Kelola Kategori';
+            document.getElementById('newCategoryInput').value = '';
+            renderCategoryManagerList(section);
+            document.getElementById('categoryManagerModal').classList.remove('hidden');
+        }
+
+        function closeCategoryManager() {
+            document.getElementById('categoryManagerModal').classList.add('hidden');
+        }
+
+        function renderCategoryManagerList(section) {
+            const container = document.getElementById('categoryManagerList');
+            if (!container) return;
+            const list = categoriesData[section] || [];
+
+            if (list.length === 0) {
+                container.innerHTML = `<div class="text-center text-xs text-rose-200/70 py-4">Belum ada kategori. Tambahkan kategori baru di atas.</div>`;
+                return;
+            }
+
+            container.innerHTML = list.map((cat, idx) => `
+                <div class="glass-card p-3 rounded-xl flex items-center justify-between gap-2 border border-rose-300/20">
+                    <input type="text" id="catEditInput-${idx}" value="${escapeHtml(cat)}" class="flex-1 px-3 py-1.5 rounded-lg glass-input text-xs font-medium">
+                    <div class="flex items-center gap-1.5">
+                        <button type="button" onclick="updateCategoryName('${section}', ${idx})" class="px-2.5 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/35 border border-amber-400/40 text-amber-200 text-xs font-semibold transition" title="Simpan Perubahan Nama">
+                            <i class="fas fa-save"></i>
+                        </button>
+                        <button type="button" onclick="deleteCategoryName('${section}', ${idx})" class="px-2.5 py-1.5 rounded-lg bg-rose-500/20 hover:bg-rose-500/35 border border-rose-400/40 text-rose-200 text-xs font-semibold transition" title="Hapus Kategori">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        async function addNewCategory(e) {
+            e.preventDefault();
+            if (!isAdmin) return;
+            const section = document.getElementById('catManagerSection').value;
+            const input = document.getElementById('newCategoryInput');
+            const newName = input.value.trim();
+            if (!newName) return;
+
+            if (categoriesData[section].some(c => c.toLowerCase() === newName.toLowerCase())) {
+                showToast('Kategori tersebut sudah tersedia.', 'error');
+                return;
+            }
+
+            categoriesData[section].push(newName);
+            input.value = '';
+            renderCategoryManagerList(section);
+            renderCategoryFilterPills(section);
+            await persistJsonDatabase(true);
+            showToast(`Kategori "${newName}" berhasil ditambahkan!`, 'success');
+        }
+
+        async function updateCategoryName(section, idx) {
+            if (!isAdmin) return;
+            const input = document.getElementById(`catEditInput-${idx}`);
+            if (!input) return;
+            const updatedName = input.value.trim();
+            const oldName = categoriesData[section][idx];
+            if (!updatedName || updatedName === oldName) return;
+
+            if (categoriesData[section].some((c, i) => i !== idx && c.toLowerCase() === updatedName.toLowerCase())) {
+                showToast('Nama kategori sudah digunakan.', 'error');
+                return;
+            }
+
+            categoriesData[section][idx] = updatedName;
+
+            // Propagate renamed category to existing items
+            if (section === 'news') {
+                newsData.forEach(item => { if (item.category === oldName) item.category = updatedName; });
+                if (activeNewsFilter === oldName) activeNewsFilter = updatedName;
+                renderNews();
+            } else if (section === 'article') {
+                articlesData.forEach(item => { if (item.category === oldName) item.category = updatedName; });
+                if (activeArticleFilter === oldName) activeArticleFilter = updatedName;
+                renderArticles();
+            } else if (section === 'gallery') {
+                galleryData.forEach(item => { if (item.category === oldName) item.category = updatedName; });
+                if (activeGalleryFilter === oldName) activeGalleryFilter = updatedName;
+                renderGallery();
+            }
+
+            renderCategoryManagerList(section);
+            renderCategoryFilterPills(section);
+            await persistJsonDatabase(true);
+            showToast(`Kategori diperbarui menjadi "${updatedName}"!`, 'success');
+        }
+
+        async function deleteCategoryName(section, idx) {
+            if (!isAdmin) return;
+            if (categoriesData[section].length <= 1) {
+                showToast('Minimal harus tersisa satu kategori aktif.', 'error');
+                return;
+            }
+            const removed = categoriesData[section].splice(idx, 1)[0];
+            if (section === 'news' && activeNewsFilter === removed) activeNewsFilter = 'Semua';
+            if (section === 'article' && activeArticleFilter === removed) activeArticleFilter = 'Semua';
+            if (section === 'gallery' && activeGalleryFilter === removed) activeGalleryFilter = 'Semua';
+
+            renderCategoryManagerList(section);
+            renderCategoryFilterPills(section);
+            if (section === 'news') renderNews();
+            if (section === 'article') renderArticles();
+            if (section === 'gallery') renderGallery();
+            await persistJsonDatabase(true);
+            showToast(`Kategori "${removed}" telah dihapus.`, 'info');
+        }
+
+        // =====================================================================
+        // NEWS & ARTICLES CRUD (ADMIN) & READER (GUEST)
+        // =====================================================================
+
+        function renderNews() {
+            const grid = document.getElementById('newsGrid');
+            if (!grid) return;
+
+            const filtered = activeNewsFilter === 'Semua'
+                ? newsData
+                : newsData.filter(n => n.category === activeNewsFilter);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full glass-panel rounded-3xl p-8 text-center text-rose-200/70 text-sm">Belum ada berita pada kategori "${escapeHtml(activeNewsFilter)}".</div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(item => `
+                <article class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between group">
+                    <div>
+                        <div class="relative h-48 overflow-hidden bg-maroon-950">
+                            <img src="${escapeHtml(item.image)}" 
+                                 onerror="this.src='https://placehold.co/600x400/3b0404/fda4af?text=Berita+CS'"
+                                 alt="${escapeHtml(item.title)}" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[11px] font-bold bg-maroon-950/85 border border-rose-400/40 text-rose-200 uppercase">${escapeHtml(item.category || 'Update')}</span>
+                            ${isAdmin ? `
+                            <div class="absolute top-3 right-3 flex gap-1.5">
+                                <button onclick="openEditorModal('news', ${item.id})" class="w-8 h-8 rounded-lg bg-maroon-950/90 hover:bg-amber-600 text-amber-300 hover:text-white border border-amber-400/40 flex items-center justify-center transition" title="Edit Berita">
+                                    <i class="fas fa-edit text-xs"></i>
+                                </button>
+                                <button onclick="deleteContent('news', ${item.id})" class="w-8 h-8 rounded-lg bg-maroon-950/90 hover:bg-rose-600 text-rose-300 hover:text-white border border-rose-400/40 flex items-center justify-center transition" title="Hapus Berita">
+                                    <i class="fas fa-trash-alt text-xs"></i>
+                                </button>
+                            </div>` : ''}
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 text-xs text-rose-200/60 mb-2">
+                                <span><i class="far fa-calendar-alt mr-1 text-rose-300"></i>${escapeHtml(item.date)}</span>
+                                <span>•</span>
+                                <span>${escapeHtml(item.author)}</span>
+                            </div>
+                            <h3 class="font-bold text-lg text-white mb-2.5 line-clamp-2 group-hover:text-rose-300 transition">${escapeHtml(item.title)}</h3>
+                            <p class="text-rose-100/70 text-sm line-clamp-3 leading-relaxed">${escapeHtml(item.preview)}</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2">
+                        <button onclick="openReaderModal('news', ${item.id})" class="text-rose-300 hover:text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition">
+                            <span>Baca Selengkapnya</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function renderArticles() {
+            const grid = document.getElementById('articlesGrid');
+            if (!grid) return;
+
+            const filtered = activeArticleFilter === 'Semua'
+                ? articlesData
+                : articlesData.filter(a => a.category === activeArticleFilter);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full glass-panel rounded-3xl p-8 text-center text-rose-200/70 text-sm">Tidak ada artikel pada kategori "${escapeHtml(activeArticleFilter)}".</div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(item => `
+                <article class="glass-card rounded-3xl overflow-hidden flex flex-col justify-between group">
+                    <div>
+                        <div class="relative h-48 overflow-hidden bg-maroon-950">
+                            <img src="${escapeHtml(item.image)}" 
+                                 onerror="this.src='https://placehold.co/600x400/3b0404/fda4af?text=Artikel+Sistem'"
+                                 alt="${escapeHtml(item.title)}" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                            <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[11px] font-bold bg-maroon-950/85 border border-amber-400/40 text-amber-200">${escapeHtml(item.category || 'Wawasan')}</span>
+                            ${isAdmin ? `
+                            <div class="absolute top-3 right-3 flex gap-1.5">
+                                <button onclick="openEditorModal('article', ${item.id})" class="w-8 h-8 rounded-lg bg-maroon-950/90 hover:bg-amber-600 text-amber-300 hover:text-white border border-amber-400/40 flex items-center justify-center transition" title="Edit Artikel">
+                                    <i class="fas fa-edit text-xs"></i>
+                                </button>
+                                <button onclick="deleteContent('article', ${item.id})" class="w-8 h-8 rounded-lg bg-maroon-950/90 hover:bg-rose-600 text-rose-300 hover:text-white border border-rose-400/40 flex items-center justify-center transition" title="Hapus Artikel">
+                                    <i class="fas fa-trash-alt text-xs"></i>
+                                </button>
+                            </div>` : ''}
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-center gap-3 text-xs text-rose-200/60 mb-2">
+                                <span><i class="far fa-calendar-alt mr-1 text-amber-300"></i>${escapeHtml(item.date)}</span>
+                                <span>•</span>
+                                <span>${escapeHtml(item.author)}</span>
+                            </div>
+                            <h3 class="font-bold text-lg text-white mb-2.5 line-clamp-2 group-hover:text-amber-200 transition">${escapeHtml(item.title)}</h3>
+                            <p class="text-rose-100/70 text-sm line-clamp-3 leading-relaxed">${escapeHtml(item.preview)}</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2">
+                        <button onclick="openReaderModal('article', ${item.id})" class="text-amber-300 hover:text-white text-xs font-bold uppercase tracking-wider flex items-center gap-2 transition">
+                            <span>Baca Artikel Lengkap</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        function openReaderModal(type, id) {
+            const list = type === 'news' ? newsData : articlesData;
+            const item = list.find(x => x.id === id);
+            if (!item) return;
+
+            document.getElementById('readerBadge').textContent = type === 'news' ? 'Berita Terkini' : 'Artikel & Wawasan';
+            document.getElementById('readerImage').src = item.image;
+            document.getElementById('readerTitle').textContent = item.title;
+            document.getElementById('readerDate').textContent = item.date;
+            document.getElementById('readerAuthor').textContent = item.author;
+            document.getElementById('readerContent').textContent = item.content;
+
+            const catWrap = document.getElementById('readerCategoryWrap');
+            if (item.category) {
+                catWrap.classList.remove('hidden');
+                document.getElementById('readerCategory').textContent = item.category;
+            } else {
+                catWrap.classList.add('hidden');
+            }
+
+            document.getElementById('readerModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeReaderModal() {
+            document.getElementById('readerModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function openEditorModal(type, id = null) {
+            if (!isAdmin) return;
+            document.getElementById('editType').value = type;
+            document.getElementById('editId').value = id || '';
+            const filePicker = document.getElementById('editFilePicker');
+            if (filePicker) filePicker.value = '';
+
+            const catContainer = document.getElementById('editCategoryContainer');
+            catContainer.classList.remove('hidden');
+
+            const folderPickerWrap = document.getElementById('editFolderPickerWrap');
+            const presetsWrap = document.getElementById('editImagesPresets');
+            if (folderPickerWrap) folderPickerWrap.classList.toggle('hidden', type !== 'news');
+            if (presetsWrap) presetsWrap.classList.toggle('hidden', type !== 'news');
+
+            if (id) {
+                const list = type === 'news' ? newsData : articlesData;
+                const item = list.find(x => x.id === id);
+                document.getElementById('editorModalTitle').textContent = type === 'news' ? 'Perbarui Berita' : 'Perbarui Artikel';
+                document.getElementById('editTitle').value = item.title;
+                document.getElementById('editAuthor').value = item.author;
+                document.getElementById('editImage').value = item.image;
+                document.getElementById('editPreview').value = item.preview;
+                document.getElementById('editContent').value = item.content;
+                populateCategorySelect('editCategory', type, item.category || '');
+                updateEditorImagePreview(item.image);
+            } else {
+                document.getElementById('editorModalTitle').textContent = type === 'news' ? 'Publikasikan Berita Baru' : 'Tulis Artikel Baru';
+                document.getElementById('editTitle').value = '';
+                document.getElementById('editAuthor').value = 'Tim Redaksi CS';
+                const defaultImg = type === 'news'
+                    ? 'images/berita_01.jpg'
+                    : 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800';
+                document.getElementById('editImage').value = defaultImg;
+                document.getElementById('editPreview').value = '';
+                document.getElementById('editContent').value = '';
+                populateCategorySelect('editCategory', type);
+                updateEditorImagePreview(defaultImg);
+            }
+
+            document.getElementById('editorModal').classList.remove('hidden');
+        }
+
+        function handleEditorFolderFilePick(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const folderPath = `images/${file.name}`;
+            const input = document.getElementById('editImage');
+            input.value = folderPath;
+
+            const objectUrl = URL.createObjectURL(file);
+            const previewImg = document.getElementById('editImagePreview');
+            const badge = document.getElementById('editPathBadge');
+            if (previewImg) previewImg.src = objectUrl;
+            if (badge) badge.textContent = folderPath;
+            showToast(`Jalur foto berita diatur ke "${folderPath}"`, 'info');
+        }
+
+        function selectEditorPresetImg(path) {
+            const input = document.getElementById('editImage');
+            if (input) {
+                input.value = path;
+                updateEditorImagePreview(path);
+            }
+        }
+
+        function updateEditorImagePreview(path) {
+            const trimmed = (path || '').trim();
+            const previewImg = document.getElementById('editImagePreview');
+            const badge = document.getElementById('editPathBadge');
+            if (previewImg) {
+                previewImg.src = trimmed || 'https://placehold.co/600x300/3b0404/fda4af?text=Pratinjau+Gambar+Sampul';
+            }
+            if (badge) {
+                badge.textContent = trimmed || 'images/';
+            }
+        }
+
+        function closeEditorModal() {
+            document.getElementById('editorModal').classList.add('hidden');
+        }
+
+        function saveEditorContent(e) {
+            e.preventDefault();
+            if (!isAdmin) return;
+
+            const type = document.getElementById('editType').value;
+            const idVal = document.getElementById('editId').value;
+            const title = document.getElementById('editTitle').value.trim();
+            const author = document.getElementById('editAuthor').value.trim();
+            const category = document.getElementById('editCategory').value;
+            let image = document.getElementById('editImage').value.trim();
+
+            // For news, if admin enters only a filename without URL scheme or folder prefix, normalize to 'images/<filename>'
+            if (type === 'news' && image && !image.startsWith('http://') && !image.startsWith('https://') && !image.startsWith('images/') && !image.startsWith('img/') && !image.startsWith('./') && !image.startsWith('/')) {
+                image = `images/${image}`;
+            }
+
+            const preview = document.getElementById('editPreview').value.trim();
+            const content = document.getElementById('editContent').value.trim();
+            const today = formatCurrentDate();
+
+            const targetList = type === 'news' ? newsData : articlesData;
+            if (idVal) {
+                const idx = targetList.findIndex(item => item.id === Number(idVal));
+                if (idx > -1) {
+                    targetList[idx] = { ...targetList[idx], title, author, category, image, preview, content };
+                }
+                showToast(type === 'news' ? 'Berita berhasil diperbarui!' : 'Artikel berhasil diperbarui!', 'success');
+            } else {
+                targetList.unshift({
+                    id: Date.now(),
+                    title,
+                    author,
+                    category,
+                    image,
+                    preview,
+                    content,
+                    date: today
+                });
+                showToast(type === 'news' ? 'Berita baru berhasil dipublikasikan!' : 'Artikel baru berhasil diterbitkan!', 'success');
+            }
+
+            if (type === 'news') renderNews();
+            else renderArticles();
+            closeEditorModal();
+            persistJsonDatabase(true);
+        }
+
+        async function deleteContent(type, id) {
+            if (!isAdmin) return;
+            if (type === 'news') {
+                newsData = newsData.filter(item => item.id !== id);
+                renderNews();
+                showToast('Berita telah dihapus.', 'info');
+            } else {
+                articlesData = articlesData.filter(item => item.id !== id);
+                renderArticles();
+                showToast('Artikel telah dihapus.', 'info');
+            }
+            await persistJsonDatabase(true);
+        }
+
+        function filterNews(category) {
+            activeNewsFilter = category;
+            renderCategoryFilterPills('news');
+            renderNews();
+        }
+
+        function filterArticles(category) {
+            activeArticleFilter = category;
+            renderCategoryFilterPills('article');
+            renderArticles();
+        }
+
+        // =====================================================================
+        // GALLERY MANAGEMENT (ADMIN) & LIGHTBOX VIEWER (GUEST)
+        // =====================================================================
+
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            if (!grid) return;
+
+            const filtered = activeGalleryFilter === 'Semua'
+                ? galleryData
+                : galleryData.filter(g => g.category === activeGalleryFilter);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div class="col-span-full glass-panel rounded-3xl p-8 text-center text-rose-200/70 text-sm">Belum ada dokumentasi foto pada kategori "${escapeHtml(activeGalleryFilter)}".</div>`;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(item => `
+                <div class="glass-card rounded-3xl overflow-hidden group relative cursor-pointer" onclick="openGalleryLightbox(${item.id})">
+                    <div class="relative h-60 overflow-hidden bg-maroon-950">
+                        <img src="${escapeHtml(item.image)}"
+                             onerror="this.src='https://placehold.co/800x600/3b0404/fda4af?text=Galeri+Kegiatan'"
+                             alt="${escapeHtml(item.title)}"
+                             class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-maroon-950 via-maroon-950/30 to-transparent opacity-90"></div>
+                        <span class="absolute top-3 left-3 px-3 py-1 rounded-full text-[11px] font-bold bg-maroon-950/85 border border-rose-400/40 text-rose-200">${escapeHtml(item.category)}</span>
+                        ${isAdmin ? `
+                        <div class="absolute top-3 right-3 flex gap-1.5 z-10" onclick="event.stopPropagation()">
+                            <button onclick="openGalleryEditor(${item.id})" class="w-8 h-8 rounded-lg bg-maroon-950/90 hover:bg-amber-600 text-amber-300 hover:text-white border border-amber-400/40 flex items-center justify-center transition" title="Edit Foto">
+                                <i class="fas fa-edit text-xs"></i>
+                            </button>
+                            <button onclick="deleteGalleryItem(${item.id})" class="w-8 h-8 rounded-lg bg-maroon-950/90 hover:bg-rose-600 text-rose-300 hover:text-white border border-rose-400/40 flex items-center justify-center transition" title="Hapus Foto">
+                                <i class="fas fa-trash-alt text-xs"></i>
+                            </button>
+                        </div>` : ''}
+                        <div class="absolute bottom-0 inset-x-0 p-5">
+                            <span class="text-[11px] text-rose-300 font-semibold">${escapeHtml(item.date)}</span>
+                            <h3 class="font-bold text-base text-white mt-0.5 line-clamp-1">${escapeHtml(item.title)}</h3>
+                            <p class="text-xs text-rose-100/75 mt-1 line-clamp-2">${escapeHtml(item.desc)}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterGallery(category) {
+            activeGalleryFilter = category;
+            renderCategoryFilterPills('gallery');
+            renderGallery();
+        }
+
+        function openGalleryLightbox(id) {
+            const item = galleryData.find(g => g.id === id);
+            if (!item) return;
+            document.getElementById('lightboxImg').src = item.image;
+            document.getElementById('lightboxCat').textContent = item.category;
+            document.getElementById('lightboxTitle').textContent = item.title;
+            document.getElementById('lightboxDesc').textContent = item.desc;
+            document.getElementById('lightboxDate').textContent = item.date;
+            document.getElementById('galleryLightbox').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeGalleryLightbox() {
+            document.getElementById('galleryLightbox').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function openGalleryEditor(id = null) {
+            if (!isAdmin) return;
+            document.getElementById('editGalId').value = id || '';
+            const picker = document.getElementById('galFilePicker');
+            if (picker) picker.value = '';
+
+            if (id) {
+                const item = galleryData.find(g => g.id === id);
+                if (!item) return;
+                document.getElementById('galleryEditorTitle').textContent = 'Perbarui Foto Kegiatan';
+                document.getElementById('galTitle').value = item.title;
+                document.getElementById('galImage').value = item.image;
+                document.getElementById('galDesc').value = item.desc;
+                populateCategorySelect('galCategory', 'gallery', item.category);
+                updateGalleryPreview(item.image);
+            } else {
+                document.getElementById('galleryEditorTitle').textContent = 'Tambah Foto Kegiatan';
+                document.getElementById('galTitle').value = '';
+                document.getElementById('galImage').value = 'img/rev_kholil.png';
+                document.getElementById('galDesc').value = '';
+                populateCategorySelect('galCategory', 'gallery');
+                updateGalleryPreview('img/rev_kholil.png');
+            }
+            document.getElementById('galleryEditorModal').classList.remove('hidden');
+        }
+
+        function closeGalleryEditor() {
+            document.getElementById('galleryEditorModal').classList.add('hidden');
+        }
+
+        function handleGalleryFolderFilePick(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const folderPath = `img/${file.name}`;
+            document.getElementById('galImage').value = folderPath;
+            const objectUrl = URL.createObjectURL(file);
+            document.getElementById('galImagePreview').src = objectUrl;
+            document.getElementById('galPathBadge').textContent = folderPath;
+            showToast(`Jalur foto diatur ke "${folderPath}"`, 'info');
+        }
+
+        function selectGalleryPresetImg(path) {
+            document.getElementById('galImage').value = path;
+            updateGalleryPreview(path);
+        }
+
+        function updateGalleryPreview(path) {
+            const trimmed = (path || '').trim();
+            document.getElementById('galImagePreview').src = trimmed || 'https://placehold.co/600x300/3b0404/fda4af?text=Pratinjau+Folder+img/';
+            document.getElementById('galPathBadge').textContent = trimmed || 'img/';
+        }
+
+        async function saveGalleryItem(e) {
+            e.preventDefault();
+            if (!isAdmin) return;
+            const idVal = document.getElementById('editGalId').value;
+            const title = document.getElementById('galTitle').value.trim();
+            const category = document.getElementById('galCategory').value;
+            let image = document.getElementById('galImage').value.trim();
+            const desc = document.getElementById('galDesc').value.trim();
+
+            if (image && !image.startsWith('http://') && !image.startsWith('https://') && !image.startsWith('img/') && !image.startsWith('images/') && !image.startsWith('./') && !image.startsWith('/')) {
+                image = `img/${image}`;
+            }
+
+            if (idVal) {
+                const idx = galleryData.findIndex(g => g.id === Number(idVal));
+                if (idx > -1) {
+                    galleryData[idx] = { ...galleryData[idx], title, category, image, desc };
+                }
+                showToast('Foto kegiatan berhasil diperbarui!', 'success');
+            } else {
+                galleryData.unshift({
+                    id: Date.now(),
+                    title,
+                    category,
+                    image,
+                    desc,
+                    date: formatCurrentDate()
+                });
+                showToast('Foto kegiatan baru berhasil ditambahkan!', 'success');
+            }
+
+            renderGallery();
+            closeGalleryEditor();
+            await persistJsonDatabase(true);
+        }
+
+        async function deleteGalleryItem(id) {
+            if (!isAdmin) return;
+            galleryData = galleryData.filter(g => g.id !== id);
+            renderGallery();
+            await persistJsonDatabase(true);
+            showToast('Foto kegiatan telah dihapus.', 'info');
+        }
+
+        // =====================================================================
+        // CONTACT & PUBLIC INQUIRY FORUM (GUEST SUBMIT & VIEW ADMIN RESPONSE)
+        // =====================================================================
+
+        function renderInquiries() {
+            const listEl = document.getElementById('inquiriesList');
+            const badgeEl = document.getElementById('inquiryCountBadge');
+            if (!listEl) return;
+
+            if (badgeEl) {
+                badgeEl.textContent = `${inquiriesData.length} Pesan`;
+            }
+
+            if (inquiriesData.length === 0) {
+                listEl.innerHTML = `<div class="glass-card rounded-2xl p-6 text-center text-rose-200/70 text-sm">Belum ada pesan atau pertanyaan masuk. Jadilah yang pertama berdiskusi!</div>`;
+                return;
+            }
+
+            listEl.innerHTML = inquiriesData.map(item => `
+                <div class="glass-card rounded-2xl p-5 space-y-3 border border-rose-300/20">
+                    <div class="flex flex-wrap justify-between items-start gap-2">
+                        <div>
+                            <h4 class="font-bold text-white text-sm">${escapeHtml(item.name)}</h4>
+                            <span class="text-[11px] text-rose-200/65">${escapeHtml(item.date)}</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold ${item.response ? 'bg-emerald-500/20 border border-emerald-400/40 text-emerald-200' : 'bg-amber-500/20 border border-amber-400/40 text-amber-200'}">
+                                ${item.response ? 'Telah Direspon' : 'Menunggu Respon'}
+                            </span>
+                            ${isAdmin ? `
+                            <button onclick="deleteInquiry(${item.id})" class="text-rose-300/75 hover:text-rose-200 text-xs p-1" title="Hapus Pesan">
+                                <i class="fas fa-trash-alt"></i>
+                            </button>` : ''}
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-rose-100/90 leading-relaxed bg-maroon-950/50 p-3.5 rounded-xl border border-rose-200/10">
+                        "${escapeHtml(item.message)}"
+                    </p>
+
+                    ${item.response ? `
+                    <div class="ml-3 sm:ml-5 pl-3.5 border-l-2 border-emerald-400/60 space-y-1">
+                        <div class="flex items-center gap-2 text-[11px] font-bold text-emerald-300">
+                            <i class="fas fa-reply"></i>
+                            <span>Tanggapan Resmi (${escapeHtml(item.respondedAt || 'Admin CS')})</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-emerald-100/90 leading-relaxed">${escapeHtml(item.response)}</p>
+                    </div>` : ''}
+
+                    ${isAdmin ? `
+                    <form onsubmit="submitAdminReply(event, ${item.id})" class="pt-2 flex gap-2">
+                        <input type="text" id="replyInput-${item.id}" value="${escapeHtml(item.response || '')}" class="flex-1 px-3.5 py-2 rounded-xl glass-input text-xs" placeholder="Tulis atau perbarui balasan resmi admin..." required>
+                        <button type="submit" class="px-4 py-2 rounded-xl glow-btn-primary text-white text-xs font-bold whitespace-nowrap">
+                            ${item.response ? 'Perbarui' : 'Balas'}
+                        </button>
+                    </form>` : ''}
+                </div>
+            `).join('');
+        }
+
+        async function handleContactSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('contactName').value.trim();
+            const email = document.getElementById('contactEmail').value.trim();
+            const message = document.getElementById('contactMessage').value.trim();
+
+            inquiriesData.unshift({
+                id: Date.now(),
+                name,
+                email,
+                date: formatCurrentDate(true),
+                message,
+                response: null,
+                respondedAt: null
+            });
+
+            e.target.reset();
+            renderInquiries();
+            await persistJsonDatabase(true);
+            showToast('Pesan Anda berhasil dikirim ke forum diskusi!', 'success');
+        }
+
+        async function submitAdminReply(e, id) {
+            e.preventDefault();
+            if (!isAdmin) return;
+            const input = document.getElementById(`replyInput-${id}`);
+            if (!input) return;
+            const replyText = input.value.trim();
+            if (!replyText) return;
+
+            const idx = inquiriesData.findIndex(i => i.id === id);
+            if (idx > -1) {
+                inquiriesData[idx].response = replyText;
+                inquiriesData[idx].respondedAt = `${formatCurrentDate()} • Admin CS`;
+                renderInquiries();
+                await persistJsonDatabase(true);
+                showToast('Respon resmi admin berhasil dipublikasikan!', 'success');
+            }
+        }
+
+        async function deleteInquiry(id) {
+            if (!isAdmin) return;
+            inquiriesData = inquiriesData.filter(i => i.id !== id);
+            renderInquiries();
+            await persistJsonDatabase(true);
+            showToast('Pesan telah dihapus.', 'info');
+        }
+
+        // =====================================================================
+        // UTILITIES, TOAST NOTIFICATIONS & NAVIGATION INITIALIZATION
+        // =====================================================================
+
+        function formatCurrentDate(withTime = false) {
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+            const now = new Date();
+            const base = `${String(now.getDate()).padStart(2, '0')} ${months[now.getMonth()]} ${now.getFullYear()}`;
+            if (!withTime) return base;
+            const hh = String(now.getHours()).padStart(2, '0');
+            const mm = String(now.getMinutes()).padStart(2, '0');
+            return `${base}, ${hh}:${mm}`;
+        }
+
+        function escapeHtml(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            if (!container) return;
+
+            const colors = {
+                success: 'border-emerald-400/50 bg-emerald-950/90 text-emerald-100',
+                error: 'border-rose-400/60 bg-rose-950/90 text-rose-100',
+                info: 'border-amber-400/50 bg-maroon-950/90 text-amber-100'
+            };
+            const icons = {
+                success: 'fa-check-circle text-emerald-400',
+                error: 'fa-exclamation-circle text-rose-400',
+                info: 'fa-info-circle text-amber-300'
+            };
+
+            const toast = document.createElement('div');
+            toast.className = `pointer-events-auto px-4 py-3 rounded-2xl border backdrop-blur-md shadow-2xl text-xs sm:text-sm font-medium flex items-center gap-3 transition-all duration-300 ${colors[type] || colors.info}`;
+            toast.innerHTML = `<i class="fas ${icons[type] || icons.info} text-base"></i><span>${escapeHtml(message)}</span>`;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateY(8px)';
+                setTimeout(() => toast.remove(), 300);
+            }, 3400);
+        }
+
+        // Mobile Navigation Drawer Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuBtnIcon = document.getElementById('menuBtnIcon');
+
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.toggle('hidden');
+                if (menuBtnIcon) {
+                    menuBtnIcon.className = isHidden ? 'fas fa-bars text-base text-rose-300' : 'fas fa-times text-base text-rose-300';
+                }
+            });
+
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    if (menuBtnIcon) menuBtnIcon.className = 'fas fa-bars text-base text-rose-300';
+                });
+            });
+        }
+
+        // Bootstrap Application on Load
+        document.addEventListener('DOMContentLoaded', async () => {
+            await initJsonDatabase();
+            await initAdminSecurity();
+            renderAllSections();
+        });
+    </script>
+</body>
+</html>
